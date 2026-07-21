@@ -1,0 +1,6 @@
+{
+  "name": "Jack -- 3D Creator Portfolio",
+  "description": "A cinematic high-craft full-stack portfolio for Jack, a 3D Creator and Designer. Integrates 3D interactive elements, custom target-audience experience modes, sticky stacking project cards, certifications, and live reviews.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
