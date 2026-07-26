@@ -53,11 +53,11 @@ export function Technology() {
     cols.forEach((col, i) => {
       gsap.fromTo(
         col,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.6,
           delay: i * 0.1,
           ease: "power2.out",
           scrollTrigger: {
@@ -70,32 +70,29 @@ export function Technology() {
   }, { scope: containerRef });
 
   return (
-    <section ref={containerRef} className="w-full bg-background text-foreground py-40 border-t border-border relative overflow-hidden">
+    <section ref={containerRef} className="w-full bg-[#000000] text-[#f5f5f7] py-32 relative overflow-hidden">
       
-      {/* Subtle background glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-        <div className="mb-32">
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter mb-6 leading-tight">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="mb-24 flex flex-col items-start max-w-2xl">
+          <h2 className="text-[40px] md:text-[56px] font-marketing font-light tracking-tight mb-4 leading-tight">
             Technology
           </h2>
-          <p className="text-xl md:text-2xl text-foreground/50 font-light max-w-2xl">
+          <p className="text-[18px] md:text-[20px] text-[rgba(255,255,255,0.55)] font-ui font-light">
             My core stack for building robust, scalable digital products.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-8 border-t border-[rgba(255,255,255,0.08)] pt-16">
           {Object.entries(technologies).map(([category, skills]) => (
-            <div key={category} className="tech-col flex flex-col gap-8 opacity-0">
-              <h3 className="text-sm font-mono tracking-widest text-foreground/40 uppercase">
+            <div key={category} className="tech-col flex flex-col gap-6 opacity-0">
+              <h3 className="text-[13px] font-code text-[rgba(255,255,255,0.4)] uppercase tracking-[0.1em]">
                 {category}
               </h3>
-              <ul className="flex flex-col gap-5">
+              <ul className="flex flex-col gap-4">
                 {skills.map((skill) => (
                   <li 
                     key={skill} 
-                    className="text-xl font-medium tracking-tight text-foreground/80 hover:text-accent transition-colors cursor-default"
+                    className="text-[18px] font-ui font-medium tracking-tight text-white hover:text-[#635BFF] transition-colors duration-200 cursor-default"
                   >
                     {skill}
                   </li>

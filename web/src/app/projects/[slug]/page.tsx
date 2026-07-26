@@ -117,13 +117,13 @@ export default async function ProjectPage({ params }: Props) {
         
         {/* Stripe-style Role & Tech Metadata Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[#111] border border-white/5 rounded-[12px] p-8 stripe-shadow hover:-translate-y-1 transition-transform duration-300">
+          <div className="bg-[#111] border border-[rgba(255,255,255,0.08)] rounded-[8px] p-8 stripe-shadow hover:-translate-y-1 transition-transform duration-300">
             <h3 className="font-code text-[11px] uppercase tracking-widest text-[#635BFF] mb-4">Role & Timeline</h3>
-            <p className="text-[20px] font-medium text-white mb-2">{project.role}</p>
-            <p className="text-[14px] text-white/40 font-ui">Completed: {project.timeline}</p>
+            <p className="text-[20px] font-marketing font-light text-white mb-2">{project.role}</p>
+            <p className="text-[14px] text-white/40 font-ui font-light">Completed: {project.timeline}</p>
           </div>
           
-          <div className="bg-[#111] border border-white/5 rounded-[12px] p-8 stripe-shadow hover:-translate-y-1 transition-transform duration-300">
+          <div className="bg-[#111] border border-[rgba(255,255,255,0.08)] rounded-[8px] p-8 stripe-shadow hover:-translate-y-1 transition-transform duration-300">
             <h3 className="font-code text-[11px] uppercase tracking-widest text-[#635BFF] mb-4">Core Technologies</h3>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t: string) => (
@@ -135,30 +135,47 @@ export default async function ProjectPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Nike-style Section Header & Content */}
-        <section className="flex flex-col gap-12">
-          <h2 className="font-display font-black text-white uppercase leading-[0.85] tracking-[0.02em] text-[56px] md:text-[96px] break-words">
-            THE <br/><span className="text-white/30">PROJECT.</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            <div className="md:col-span-8 md:col-start-5 text-[18px] text-white/60 font-light leading-[1.8]">
-              <p className="mb-6">
-                {project.longDescription}
-              </p>
+        {/* Narrative Sections (Vercel & Stripe DNA) */}
+        <section className="flex flex-col gap-16 text-white/70 font-ui font-light text-[16px] leading-[1.7] max-w-[800px] mx-auto w-full">
+          
+          <div className="flex flex-col gap-6">
+            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">The Problem</h2>
+            <p>What existed? Why wasn&apos;t it good enough? Why did it matter?</p>
+            <p>{project.longDescription}</p>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">Research & Planning</h2>
+            <p>We began by analyzing existing workflows and identifying the key bottlenecks. The primary focus was on ensuring scalability and ease of use.</p>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">Architecture & Design Decisions</h2>
+            <p>The system was architected using a microservices pattern to allow independent scaling of the ML inference engine and the web API.</p>
+            
+            {/* Vercel-style Code Block */}
+            <div className="mt-4 p-6 bg-[#0d0d0d] rounded-[4px] border border-[rgba(255,255,255,0.08)] overflow-x-auto">
+              <pre className="font-code text-[13px] text-white/80 leading-[1.6]">
+                <code>{`// Example Architecture Configuration
+export const config = {
+  runtime: 'edge',
+  regions: ['iad1'],
+  memory: 1024,
+};`}</code>
+              </pre>
             </div>
           </div>
-        </section>
 
-        {/* Linear-style Content Block */}
-        <section className="flex flex-col gap-8 border-l-2 border-[#635BFF] pl-8 py-2">
-          <h2 className="text-[28px] font-marketing text-white tracking-tight">Challenges & Synthesis</h2>
-          <p className="text-[16px] text-white/60 font-light leading-[1.7] max-w-[700px]">
-            {project.challenges}
-          </p>
-          <h2 className="text-[28px] font-marketing text-white tracking-tight mt-4">Key Learnings</h2>
-          <p className="text-[16px] text-white/60 font-light leading-[1.7] max-w-[700px]">
-            {project.learnings}
-          </p>
+          <div className="flex flex-col gap-6">
+            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">Development & Challenges</h2>
+            <p>{project.challenges}</p>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">Results</h2>
+            <p>{project.learnings}</p>
+          </div>
+          
         </section>
 
         {/* Shopify-style CTA */}

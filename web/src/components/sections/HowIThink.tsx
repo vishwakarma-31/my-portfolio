@@ -1,50 +1,74 @@
-import React from "react";
+"use client";
 
-const thoughts = [
-  {
-    title: "Start with the problem, not the tool",
-    description: "Technology is a means to an end. I focus on understanding the core business or user problem before selecting the appropriate stack or architectural pattern.",
-  },
-  {
-    title: "Systems over symptoms",
-    description: "Instead of patching isolated issues, I look for systemic patterns. Building robust, reusable systems prevents technical debt and accelerates future development.",
-  },
-  {
-    title: "Design is how it works",
-    description: "Aesthetics and functionality are not separate domains. A truly great digital product requires engineering that respects design intent, and design that understands engineering constraints.",
-  },
-  {
-    title: "Simplicity is hard work",
-    description: "Complex code is easy to write; simple code is difficult. I strive for minimalism in architecture, eliminating unnecessary layers to ensure long-term maintainability.",
-  },
-];
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
+const words = "I believe that code is just a tool. The real craft is in understanding human behavior and designing systems that feel inevitable. When we build products, we aren't just shipping features; we're crafting experiences that respect the user's time, attention, and intelligence. My approach bridges the gap between deep technical architecture and relentless product focus.".split(" ");
 
 export function HowIThink() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 70%", "end 50%"]
+  });
+
   return (
-    <section className="w-full bg-background text-foreground py-40 border-t border-border overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative z-10">
-        <div className="lg:col-span-5">
-          <div className="sticky top-32">
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter mb-8 leading-tight">
+    <section className="w-full bg-[#000000] text-white">
+      {/* How I Think Section - Scroll Reveal Effect */}
+      <div 
+        ref={containerRef}
+        className="px-6 lg:px-12 max-w-[1400px] mx-auto min-h-[80vh] flex flex-col justify-center py-24 md:py-32"
+      >
+        <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+          <div className="md:w-1/3">
+            <h2 className="text-[14px] font-code uppercase tracking-widest text-[#635BFF] sticky top-32">
               How I Think
             </h2>
-            <p className="text-xl md:text-2xl text-foreground/50 font-light leading-relaxed max-w-md">
-              My philosophy on engineering, design, and building products that stand the test of time.
+          </div>
+          <div className="md:w-2/3">
+            <p className="text-[32px] md:text-[48px] lg:text-[56px] font-marketing font-light leading-[1.2] tracking-tight flex flex-wrap gap-x-3 gap-y-2">
+              {words.map((word, i) => {
+                const start = i / words.length;
+                const end = start + (1 / words.length);
+                const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
+                
+                return (
+                  <motion.span key={i} style={{ opacity }}>
+                    {word}
+                  </motion.span>
+                );
+              })}
             </p>
           </div>
         </div>
+      </div>
 
-        <div className="lg:col-span-7 flex flex-col gap-16 lg:gap-24">
-          {thoughts.map((thought, index) => (
-            <div key={index} className="flex flex-col gap-6 group">
-              <h3 className="text-2xl md:text-3xl font-semibold tracking-tight group-hover:text-accent transition-colors">
-                {thought.title}
-              </h3>
-              <p className="text-lg md:text-xl text-foreground/60 leading-relaxed font-light max-w-2xl">
-                {thought.description}
+      {/* Experience / Background */}
+      <div className="px-6 lg:px-12 max-w-[1400px] mx-auto py-24 md:py-32 border-t border-[rgba(255,255,255,0.08)]">
+        <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+          <div className="md:w-1/3">
+            <h2 className="text-[14px] font-code uppercase tracking-widest text-[#635BFF] mb-8">
+              Background
+            </h2>
+          </div>
+          <div className="md:w-2/3 flex flex-col md:flex-row gap-12">
+            
+            <div className="flex flex-col gap-4 flex-1">
+              <h3 className="text-[24px] font-marketing text-white tracking-tight">Full Stack Engineering</h3>
+              <p className="text-[16px] text-white/60 font-ui font-light leading-[1.7]">
+                Over the years, I&apos;ve specialized in building robust web applications from the database to the browser. I work primarily with React, Next.js, Node, and Python, always choosing the right tool for the specific problem at hand.
               </p>
             </div>
-          ))}
+
+            <div className="flex flex-col gap-4 flex-1">
+              <h3 className="text-[24px] font-marketing text-white tracking-tight">Design & Product</h3>
+              <p className="text-[16px] text-white/60 font-ui font-light leading-[1.7]">
+                I don&apos;t just write code; I design systems. Whether it&apos;s crafting a seamless user interface or architecting a scalable backend, I ensure every decision aligns with the ultimate business goal.
+              </p>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>

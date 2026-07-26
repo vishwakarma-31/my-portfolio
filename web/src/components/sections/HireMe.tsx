@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function HireMe() {
   return (
@@ -45,15 +46,18 @@ export function HireMe() {
           </div>
         </motion.div>
 
-        <motion.button 
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-[#96FF00] text-black font-bold text-[17px] px-10 py-5 rounded-[4px] shopify-hover font-ui"
         >
-          Let&apos;s Work Together
-        </motion.button>
+          <Link href="/contact">
+            <button className="bg-[#96FF00] text-black font-bold text-[17px] px-10 py-5 rounded-[4px] shopify-hover font-ui">
+              Let&apos;s Work Together
+            </button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

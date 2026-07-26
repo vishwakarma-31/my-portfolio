@@ -1,158 +1,130 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Demo data - in a real app this would come from a CMS or data file
+const categories = ["All", "AI", "Automation", "Business Growth", "Dashboards", "Web Applications"];
+
 const allProjects = [
   {
-    id: 'cropify-ml',
-    title: 'Cropify',
-    category: 'Machine Learning',
-    description: 'AI-powered crop recommendation system using machine learning to analyze soil conditions, climate data, and environmental factors.',
-    slug: 'cropify-ml',
-    image: '/projects/Cropify.png'
+    title: "Cropify",
+    description: "AI-powered crop recommendation system using machine learning to analyze soil conditions, climate data, and environmental factors.",
+    category: "AI",
+    slug: "cropify-ml",
+    image: "/projects/Cropify.png"
   },
   {
-    id: 'trading-bot',
-    title: 'Telegram Trading Bot',
-    category: 'Full Stack',
-    description: 'Automated trading bot integrated with Telegram for real-time market analysis, signal alerts, and trade execution management.',
-    slug: 'trading-bot',
-    image: '/projects/Trading_Bot.png'
+    title: "Telegram Trading Bot",
+    description: "Automated trading bot integrated with Telegram for real-time market analysis, signal alerts, and trade execution.",
+    category: "Automation",
+    slug: "trading-bot",
+    image: "/projects/Trading_Bot.png"
   },
   {
-    id: 'ai-interview',
-    title: 'AI-Based Interview System',
-    category: 'Machine Learning',
-    description: 'Intelligent interview platform that automates candidate screening using NLP for verbal analysis and Computer Vision for proctoring.',
-    slug: 'ai-interview',
-    image: '/projects/AI_Interview.png'
+    title: "AI Interview",
+    description: "Intelligent interview platform automating candidate screening using NLP and Computer Vision for proctoring.",
+    category: "AI",
+    slug: "ai-interview",
+    image: "/projects/AI_Interview.png"
   },
   {
-    id: 'jarvis',
-    title: 'Jarvis',
-    category: 'Web',
-    description: 'A sophisticated AI virtual assistant capable of natural conversation, task automation, and system control, accessed via a modern web interface.',
-    slug: 'jarvis',
-    image: '/projects/Jarvis.png'
+    title: "Jarvis",
+    description: "A sophisticated AI virtual assistant capable of natural conversation, task automation, and system control via a modern web UI.",
+    category: "Web Applications",
+    slug: "jarvis",
+    image: "/projects/Jarvis.png"
   }
 ];
 
-const categories = ["All", "Machine Learning", "Full Stack", "Web"];
-
-export default function ProjectsPage() {
+export default function ProjectsArchive() {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const filteredProjects = allProjects.filter(
-    (project) => activeCategory === "All" || project.category === activeCategory
-  );
+  const filteredProjects = activeCategory === "All" 
+    ? allProjects 
+    : allProjects.filter(p => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen w-full bg-[#0d0d0d] flex flex-col px-6 lg:px-12 py-32 selection:bg-[#635BFF] selection:text-white">
-      <div className="max-w-[1400px] mx-auto w-full">
-        
-        {/* Header */}
-        <div className="mb-16 flex flex-col gap-6">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-[48px] md:text-[64px] font-marketing font-extralight tracking-tight text-white"
-          >
-            Archive.
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-[20px] text-white/50 font-ui font-light max-w-2xl leading-[1.6]"
-          >
-            A comprehensive index of selected works, experiments, and open-source contributions.
-          </motion.p>
-        </div>
+    <main className="min-h-screen bg-page-dark text-text-dark pt-32 pb-24 px-6 lg:px-12 selection:bg-[#635BFF] selection:text-white">
+      <div className="max-w-[1400px] mx-auto">
+        <header className="mb-16">
+          <h1 className="text-[48px] md:text-[64px] font-marketing font-light tracking-tight mb-6 leading-tight">
+            Project Archive
+          </h1>
+          <p className="text-[20px] text-text-secondary-dark font-ui font-light max-w-2xl">
+            A comprehensive collection of problems solved through software engineering, design, and product thinking.
+          </p>
+        </header>
 
-        {/* Category Filters */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex flex-wrap gap-3 mb-16"
-        >
-          {categories.map((category) => (
+        {/* Categories Filter */}
+        <div className="flex flex-wrap gap-3 mb-16">
+          {categories.map((cat) => (
             <button
-              key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2.5 rounded-full text-[14px] font-ui transition-all duration-300 ease-out border ${
-                activeCategory === category 
-                  ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.2)]" 
-                  : "bg-transparent text-white/60 border-white/10 hover:border-white/30 hover:text-white"
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2.5 rounded-full text-[14px] font-ui transition-all duration-300 ${
+                activeCategory === cat 
+                  ? 'bg-white text-black font-medium' 
+                  : 'bg-[rgba(255,255,255,0.05)] text-text-secondary-dark hover:bg-[rgba(255,255,255,0.1)] hover:text-white'
               }`}
             >
-              {category}
+              {cat}
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Project Grid */}
-        <motion.div 
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
+        {/* Projects Grid (Dynamic Frame Layout inspired) */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
+                key={project.slug}
                 layout
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                key={project.id}
+                className="group relative flex flex-col bg-[#0d0d0d] border border-[rgba(255,255,255,0.08)] rounded-[8px] overflow-hidden hover:border-[rgba(255,255,255,0.2)] transition-colors duration-300 stripe-shadow"
               >
-                <Link href={`/projects/${project.slug}`} className="block h-full group">
-                  <div className="w-full h-[400px] bg-[#111111] rounded-[12px] border border-white/[0.04] p-8 flex flex-col justify-between hover:bg-[#151515] hover:border-white/[0.1] transition-all duration-300 relative overflow-hidden group-hover:-translate-y-1 stripe-shadow">
-                    
-                    {/* Background Image */}
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
-                      className="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500" 
-                    />
-
-                    {/* Hover Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111] via-[#111]/80 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                    <div className="flex flex-col gap-4 relative z-10 h-full justify-between">
-                      <div className="flex justify-between items-start">
-                        <span className="text-[11px] font-code text-[#635BFF] tracking-widest uppercase bg-[#635BFF]/10 px-3 py-1 rounded-full">
-                          {project.category}
-                        </span>
-                        <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white transition-colors duration-300 transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                      </div>
-                      
-                      <div className="mt-8">
-                        <h3 className="text-[24px] font-medium tracking-tight text-white/90 mb-3 group-hover:text-white transition-colors">
-                          {project.title}
-                        </h3>
-                        <p className="text-[15px] font-ui text-white/50 leading-[1.6]">
-                          {project.description}
-                        </p>
-                      </div>
-                    </div>
+                <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#111]">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out"
+                  />
+                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <span className="text-[#635BFF] font-ui text-[12px] font-medium tracking-wide uppercase mb-3">
+                    {project.category}
+                  </span>
+                  <h3 className="text-[24px] font-marketing font-light text-white mb-3 tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-[15px] font-ui text-text-secondary-dark leading-relaxed flex-grow">
+                    {project.description}
+                  </p>
+                  <div className="mt-8">
+                    <Link href={`/projects/${project.slug}`}>
+                      <button className="text-[14px] font-ui text-white font-medium hover:text-[#635BFF] transition-colors flex items-center gap-2">
+                        View Project
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                      </button>
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
 
         {filteredProjects.length === 0 && (
-          <div className="w-full py-32 flex justify-center items-center">
-            <p className="text-white/40 font-ui">No projects found for this category.</p>
+          <div className="py-32 text-center">
+            <p className="text-[18px] text-text-secondary-dark font-ui">No projects found in this category.</p>
           </div>
         )}
       </div>
-    </div>
+    </main>
   );
 }
