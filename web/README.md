@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Product Portfolio
 
-## Getting Started
+This repository contains the source code for a premium digital product experience that replaces the traditional "developer portfolio". Designed with the philosophy of an Apple product launch, it optimizes for trust, emotional connection, and conversion.
 
-First, run the development server:
+## 🧠 Philosophy: The Master Direction
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+This is **not** a showcase of skills, a timeline of past jobs, or a generic template. It is an intentional, minimal, and unforgettable narrative built for recruiters, startup founders, and business owners.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Every pixel must earn its place. The experience is designed to take the visitor through a precise emotional sequence:
+`Curiosity → Recognition → Hope → Trust → Admiration → Confidence → Commitment → Action`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🏗 Architecture: The 10-Part Narrative
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The core layout (`app/page.tsx`) follows a strict sequence:
 
-## Learn More
+1. **HERO (`HeroProduct`)**: Captures attention immediately with an ambition-driven statement. No social clutter.
+2. **THE PROBLEM (`TheProblem`)**: Creates tension by identifying the visitor's pain points before introducing the solution.
+3. **MEET THE BUILDER (`MeetBuilder`)**: A minimal, highly focused introduction. Engineering philosophy over autobiography.
+4. **FEATURED PRODUCTS (`FeaturedProducts`)**: Deep-dive case studies detailing the Problem, Decision, Process, Architecture, Impact, and Results.
+5. **HOW I THINK (`HowIThink`)**: Focuses on core principles (Performance, Simplicity, Scalability) rather than listing tech logos.
+6. **WORKING TOGETHER (`WorkingTogether`)**: A week-by-week timeline that replaces uncertainty with absolute confidence.
+7. **ENGINEERING (`Engineering`)**: Maps technical expertise directly to business outcomes.
+8. **PROOF (`Proof`)**: Hard evidence—metrics, impact, and success stories to eliminate perceived risk.
+9. **PHILOSOPHY (`Philosophy`)**: Bold, high-contrast, minimal typography stating core beliefs.
+10. **FINAL MOMENT (`FinalMoment`)**: All distractions fade away for a single, focused CTA.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework**: [Next.js](https://nextjs.org/) (App Router, Turbopack)
+- **UI & Styling**: [React 19](https://react.dev/), [Tailwind CSS v4](https://tailwindcss.com/)
+- **Animations**: [GSAP (GreenSock)](https://gsap.com/) for cinematic, high-performance scroll triggers.
+- **Forms**: [Web3Forms](https://web3forms.com/) for serverless form submissions (`⌘+Enter` optimized).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Getting Started
 
-## Deploy on Vercel
+### Prerequisites
+- Node.js (v20+)
+- npm or pnpm
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/my-portfolio.git
+   cd my-portfolio/web
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Configure Environment Variables:
+   Create a `.env.local` file in the root of the `web` directory and add your Web3Forms access key:
+   ```env
+   NEXT_PUBLIC_WEB3FORMS_KEY=your_access_key_here
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🚢 Deployment
+
+This project is optimized for deployment on [Vercel](https://vercel.com).
+
+1. Push your code to GitHub.
+2. Import the project in Vercel.
+3. Add the `NEXT_PUBLIC_WEB3FORMS_KEY` environment variable in your Vercel project settings.
+4. Ensure your `metadataBase` in `src/app/layout.tsx` is updated to your production domain for proper OpenGraph (social sharing) image unfurling.
+5. Deploy.
+
+## 🎨 Design DNA
+- **Apple**: Hero scaling and layout rhythm.
+- **Linear**: Dark surfaces, border discipline (`border-white/10`), and keyboard-first interaction (`⌘+Enter`).
+- **Stripe**: Elevation and high-contrast typography.
+
+---
+*Built with absolute obsession for detail.*
