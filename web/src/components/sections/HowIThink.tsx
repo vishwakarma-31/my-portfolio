@@ -3,49 +3,54 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-const words = "I believe that code is just a tool. The real craft is in understanding human behavior and designing systems that feel inevitable. When we build products, we aren't just shipping features; we're crafting experiences that respect the user's time, attention, and intelligence. My approach bridges the gap between deep technical architecture and relentless product focus.".split(" ");
+const lines = [
+  { text: "Empathy", reverse: false },
+  { text: "Purpose", reverse: false },
+  { text: "Clarity", reverse: true },
+  { text: "Craftsmanship", reverse: true },
+  { text: "Impact", reverse: false },
+];
 
 export function HowIThink() {
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 70%", "end 50%"]
+    offset: ["start end", "end start"]
   });
 
+  const xRight = useTransform(scrollYProgress, [0, 1], ["-25%", "0%"]);
+  const xLeft = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+
   return (
-    <section className="w-full bg-[#000000] text-white">
-      {/* How I Think Section - Scroll Reveal Effect */}
+    <section className="w-full bg-[#000000] text-white overflow-hidden py-24 md:py-32">
+      <div className="px-6 lg:px-12 max-w-[1400px] mx-auto mb-12 md:mb-24">
+        <h2 className="text-[14px] font-code uppercase tracking-widest text-[#635BFF]">
+          How I Think
+        </h2>
+      </div>
+
       <div 
         ref={containerRef}
-        className="px-6 lg:px-12 max-w-[1400px] mx-auto min-h-[80vh] flex flex-col justify-center py-24 md:py-32"
+        className="w-full flex flex-col justify-center min-h-[40vh] mb-24 md:mb-32"
       >
-        <div className="flex flex-col md:flex-row gap-12 md:gap-24">
-          <div className="md:w-1/3">
-            <h2 className="text-[14px] font-code uppercase tracking-widest text-[#635BFF] sticky top-32">
-              How I Think
-            </h2>
-          </div>
-          <div className="md:w-2/3">
-            <p className="text-[32px] md:text-[48px] lg:text-[56px] font-marketing font-light leading-[1.2] tracking-tight flex flex-wrap gap-x-3 gap-y-2">
-              {words.map((word, i) => {
-                const start = i / words.length;
-                const end = start + (1 / words.length);
-                const opacity = useTransform(scrollYProgress, [start, end], [0.15, 1]);
-                
-                return (
-                  <motion.span key={i} style={{ opacity }}>
-                    {word}
-                  </motion.span>
-                );
-              })}
-            </p>
-          </div>
-        </div>
+        {lines.map((line, i) => (
+          <motion.div 
+            key={i}
+            style={{ x: line.reverse ? xLeft : xRight }}
+            className={`whitespace-nowrap text-[12vw] md:text-[9vw] font-marketing font-bold leading-[1.1] tracking-tight ${i % 2 === 0 ? 'text-[#635BFF]' : 'text-white'}`}
+          >
+            {[...Array(12)].map((_, j) => (
+              <span key={j} className="mr-8 md:mr-16 uppercase">
+                {line.text}.
+              </span>
+            ))}
+          </motion.div>
+        ))}
       </div>
 
       {/* Experience / Background */}
-      <div className="px-6 lg:px-12 max-w-[1400px] mx-auto py-24 md:py-32 border-t border-[rgba(255,255,255,0.08)]">
+      <div className="px-6 lg:px-12 max-w-[1400px] mx-auto py-24 md:py-32 border-t border-[rgba(255,255,255,0.08)] bg-black relative z-40">
         <div className="flex flex-col md:flex-row gap-12 md:gap-24">
           <div className="md:w-1/3">
             <h2 className="text-[14px] font-code uppercase tracking-widest text-[#635BFF] mb-8">

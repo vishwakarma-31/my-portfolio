@@ -2,13 +2,8 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const projects = [
   {
@@ -43,35 +38,22 @@ const projects = [
 
 export function FeaturedStories() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  useGSAP(() => {
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 1024px)", () => {
-      const sections = gsap.utils.toArray(".project-chapter") as HTMLElement[];
-      const totalWidth = scrollRef.current?.scrollWidth || 0;
-      const viewportWidth = window.innerWidth;
-      
-      gsap.to(sections, {
-        x: () => -(totalWidth - viewportWidth),
-        ease: "none",
-        scrollTrigger: {
-          trigger: wrapperRef.current,
-          pin: true,
-          scrub: 1,
-          snap: 1 / (sections.length - 1),
-          end: () => "+=" + totalWidth,
-        }
-      });
-    });
-
-    return () => mm.revert();
-  }, { scope: containerRef });
+  // Calculate dynamic width and transform percentage based on the number of projects.
+  // E.g., for 4 projects: transforms from 0% to -75% across a 400vw container.
+  const x = useTransform(
+    scrollYProgress, 
+    [0, 1], 
+    ["0%", `-${100 * (projects.length - 1) / projects.length}%`]
+  );
 
   return (
-    <section ref={containerRef} className="w-full bg-[#000000] text-text-dark py-[120px] overflow-hidden">
+    <section className="w-full bg-[#000000] text-text-dark py-[120px]">
       
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 mb-20">
         <h2 className="text-[40px] md:text-[56px] font-marketing font-light tracking-tight mb-4 leading-[1.07]">
@@ -79,22 +61,26 @@ export function FeaturedStories() {
         </h2>
       </div>
 
-      {/* GSAP Pin Wrapper */}
-      <div ref={wrapperRef} className="w-full relative lg:h-screen lg:flex lg:flex-col lg:justify-center overflow-hidden">
-        
-        {/* Horizontal Scrolling Showcase */}
-        <div className="w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-12 lg:overflow-visible lg:pb-0">
-          <div ref={scrollRef} className="flex h-full w-max">
+      {/* Framer Motion Pin Wrapper */}
+      <div ref={containerRef} style={{ height: `${projects.length * 100}vh` }} className="relative w-full">
+        <div style={{ position: "sticky", top: 0, height: "100vh", overflow: "hidden" }} className="flex flex-col justify-center">
+          
+          <motion.div 
+            style={{ x, display: "flex", width: `${projects.length * 100}vw` }}
+          >
             {projects.map((project, index) => (
               <div 
                 key={index} 
-                className="project-chapter w-screen h-[70vh] lg:h-[80vh] px-6 lg:px-12 flex-shrink-0 flex flex-col justify-center snap-center"
+                className="w-screen h-[70vh] lg:h-[80vh] px-6 lg:px-12 flex-shrink-0 flex flex-col justify-center"
               >
                 <div className="w-full h-full relative group rounded-[12px] overflow-hidden bg-[#0d0d0d] flex items-center justify-center">
-                  <img 
+                  <Image 
                     src={project.image} 
                     alt={project.title} 
-                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700 ease-out" 
+                    fill
+                    priority={index === 0}
+                    sizes="(max-width: 1024px) 100vw, 100vw"
+                    className="absolute inset-0 object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-700 ease-out" 
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80" />
                   
@@ -106,7 +92,7 @@ export function FeaturedStories() {
                       {project.description}
                     </p>
                     <div>
-                      <Link href={`/projects/${project.slug}`}>
+                      <Link href={`/projects/${project.slug}`} aria-label={`Explore story for ${project.title}`}>
                         <button className="px-8 py-3 bg-[#635BFF] text-white rounded-full font-ui text-[14px] font-medium hover:bg-[#524BCC] transition-colors duration-200">
                           Explore Story
                         </button>
@@ -116,13 +102,13 @@ export function FeaturedStories() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
+          </motion.div>
 
+        </div>
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 mt-20 flex justify-center">
-        <Link href="/projects">
+        <Link href="/projects" aria-label="View all projects in the archive">
           <button className="px-12 py-5 bg-white text-black rounded-full font-ui text-[16px] font-medium hover:bg-[#635BFF] hover:text-white transition-colors duration-300">
             View All Projects
           </button>

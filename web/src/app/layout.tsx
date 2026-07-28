@@ -21,8 +21,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aryan | Portfolio",
-  description: "Portfolio of Aryan",
+  title: "Aryan | Software Engineer",
+  description: "I build software that turns ideas into products people actually use. From AI platforms to business systems, I design software that solves real problems.",
+  openGraph: {
+    title: "Aryan | Software Engineer",
+    description: "I build software that turns ideas into products people actually use.",
+    url: "https://yourportfolio.com", // Replace with your actual URL
+    siteName: "Aryan's Portfolio",
+    images: [
+      {
+        url: "/og-image.jpg", // Create this image in the public folder
+        width: 1200,
+        height: 630,
+        alt: "Aryan - Software Engineer Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aryan | Software Engineer",
+    description: "I build software that turns ideas into products people actually use.",
+    images: ["/og-image.jpg"], // Ensure og-image.jpg exists in the public folder
+  },
 };
 
 export default function RootLayout({

@@ -91,7 +91,7 @@ export function DevelopmentProcess() {
             ))}
           </div>
 
-          <div className="hidden lg:block relative">
+          {/* <div className="hidden lg:block relative">
             <div className="sticky top-32 w-full h-[600px] rounded-[16px] overflow-hidden border border-[rgba(0,0,0,0.08)] bg-white stripe-shadow p-6 flex flex-col items-center justify-center">
               <img 
                 src="/tracker.png" 
@@ -99,7 +99,7 @@ export function DevelopmentProcess() {
                 className="w-full h-full object-contain"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
