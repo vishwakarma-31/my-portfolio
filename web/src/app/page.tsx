@@ -1,25 +1,27 @@
-import { Hero } from "@/components/sections/Hero";
-import { FeaturedStories } from "@/components/sections/FeaturedStories";
-import { DevelopmentProcess } from "@/components/sections/DevelopmentProcess";
-import { Technology } from "@/components/sections/Technology";
-import { Manifesto } from "@/components/sections/Manifesto";
+import { HeroProduct } from "@/components/sections/HeroProduct";
+import { TheProblem } from "@/components/sections/TheProblem";
+import { MeetBuilder } from "@/components/sections/MeetBuilder";
+import { FeaturedProducts } from "@/components/sections/FeaturedProducts";
 import { HowIThink } from "@/components/sections/HowIThink";
-import { HireMe } from "@/components/sections/HireMe";
-import { Experience } from "@/components/sections/Experience";
-import { Contact } from "@/components/sections/Contact";
+import { WorkingTogether } from "@/components/sections/WorkingTogether";
+import { Engineering } from "@/components/sections/Engineering";
+import { Proof } from "@/components/sections/Proof";
+import { Philosophy } from "@/components/sections/Philosophy";
+import { FinalMoment } from "@/components/sections/FinalMoment";
 
 export default function Home() {
   return (
     <main className="flex flex-col w-full selection:bg-[#635BFF] selection:text-white">
-      <Hero />
-      <Manifesto />
+      <HeroProduct />
+      <TheProblem />
+      <MeetBuilder />
+      <FeaturedProducts />
       <HowIThink />
-      <FeaturedStories />
-      <DevelopmentProcess />
-      <Technology />
-      <HireMe />
-      <Experience />
-      <Contact />
+      <WorkingTogether />
+      <Engineering />
+      <Proof />
+      <Philosophy />
+      <FinalMoment />
     </main>
   );
 }

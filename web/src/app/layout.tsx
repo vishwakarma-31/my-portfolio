@@ -21,19 +21,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aryan | Software Engineer",
-  description: "I build software that turns ideas into products people actually use. From AI platforms to business systems, I design software that solves real problems.",
+  title: "Aryan Vishwakarma — Software Engineer & Product Architect",
+  description: "I design and build software that turns complex problems into elegant, reliable digital products.",
   openGraph: {
-    title: "Aryan | Software Engineer",
-    description: "I build software that turns ideas into products people actually use.",
-    url: "https://yourportfolio.com", // Replace with your actual URL
-    siteName: "Aryan's Portfolio",
+    title: "Aryan Vishwakarma — Software Engineer & Product Architect",
+    description: "I design and build software that turns complex problems into elegant, reliable digital products.",
+    url: "https://aryanvishwakarma.dev",
+    siteName: "Aryan Vishwakarma",
     images: [
       {
-        url: "/og-image.jpg", // Create this image in the public folder
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Aryan - Software Engineer Portfolio",
+        alt: "Aryan Vishwakarma — Software Engineer & Product Architect",
       },
     ],
     locale: "en_US",
@@ -41,9 +41,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aryan | Software Engineer",
-    description: "I build software that turns ideas into products people actually use.",
-    images: ["/og-image.jpg"], // Ensure og-image.jpg exists in the public folder
+    title: "Aryan Vishwakarma — Software Engineer & Product Architect",
+    description: "I design and build software that turns complex problems into elegant, reliable digital products.",
+    images: ["/og-image.png"],
   },
 };
 

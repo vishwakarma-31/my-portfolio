@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { name: "Home", href: "/", shortcut: "H" },
   { name: "Work", href: "/projects", shortcut: "W" },
-  { name: "Contact", href: "/contact", shortcut: "C" },
 ];
 
 export function Navigation() {
@@ -19,19 +18,19 @@ export function Navigation() {
       <div className="px-6 mb-12">
         <span className="text-white text-[14px] font-medium tracking-wide">A. Vishwakarma</span>
       </div>
-      
+
       <ul className="flex flex-col gap-1 px-3">
         {navItems.map((item) => {
           const isActive = pathname === item.href;
           const isHovered = hovered === item.name;
-          
+
           return (
-            <li 
+            <li
               key={item.name}
               onMouseEnter={() => setHovered(item.name)}
               onMouseLeave={() => setHovered(null)}
             >
-              <Link 
+              <Link
                 href={item.href}
                 className={`
                   relative flex items-center justify-between px-3 py-2 rounded-[4px] text-[13px] font-normal tracking-[0.01em] linear-hover
@@ -42,11 +41,11 @@ export function Navigation() {
                 {isActive && (
                   <div className="absolute left-0 top-[20%] bottom-[20%] w-[1px] bg-[#635BFF]" />
                 )}
-                
+
                 <span>{item.name}</span>
-                
+
                 {/* Keyboard Hint Badge (visible on hover) */}
-                <div 
+                <div
                   className={`
                     flex items-center justify-center px-1.5 h-[18px] rounded-[3px] bg-[rgba(255,255,255,0.08)] text-[11px] font-code text-[#8a8f98] linear-hover
                     ${isHovered ? 'opacity-100' : 'opacity-0'}
