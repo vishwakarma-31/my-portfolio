@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "spline": {
+      "command": "npx",
+      "args": ["-y", "spline-mcp-server"]
+    },
+    "ui-ux-pro": {
+      "command": "node",
+      "args": [
+        "c:/Projects/my-portfolio/ui-ux-pro-max-mcp/build/index.js",
+        "--stdio"
+      ]
+    },
+    "@21st-dev/magic": {
+      "command": "npx",
+      "args": ["-y", "@21st-dev/magic@latest", "API_KEY=21st_sk_f84b2e1a8a5556628308d1520488640f88459d4f9f5a9ec07c30e6af5dacc5a1"]
+    },
+    "layers": {
+      "type": "sse",
+      "url": "https://mcp.getlayers.ai/mcp"
+    }
+  }
+}

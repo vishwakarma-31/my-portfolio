@@ -1,74 +1,19 @@
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, Monitor } from "lucide-react";
+import { ArrowLeft, Monitor, Code2, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
-
-// Real Project Data from portfolio_2.0
-const allProjects = [
-  {
-    slug: 'cropify-ml',
-    title: 'Cropify',
-    description: 'AI-powered crop recommendation system using machine learning to analyze soil conditions, climate data, and environmental factors.',
-    longDescription: 'Cropify leverages machine learning algorithms to analyze multiple agricultural parameters including soil type, pH levels, temperature, humidity, and rainfall patterns to provide farmers with data-driven crop recommendations. The system uses ensemble learning techniques combining Random Forest, SVM, and Neural Networks to achieve high prediction accuracy.',
-    image: '/projects/Cropify.png',
-    github: 'https://github.com/vishwakarma-31/Cropify-final',
-    link: 'https://vishwakarma-31-cropify-final-cropii-3w4pzw.streamlit.app/',
-    category: 'Machine Learning',
-    timeline: '2024-03-31',
-    role: 'Lead Developer',
-    tech: ['Streamlit', 'Python', 'FastAPI', 'MongoDB', 'PostgreSQL', 'Scikit-learn', 'Docker'],
-    challenges: 'Handling missing agricultural data, balancing multiple ML models, and real-time weather API integration.',
-    learnings: 'Advanced ensemble learning techniques, agricultural domain knowledge, and model deployment/scaling.'
-  },
-  {
-    slug: 'trading-bot',
-    title: 'Telegram Trading Bot',
-    description: 'Automated trading bot integrated with Telegram for real-time market analysis, signal alerts, and trade execution management.',
-    longDescription: 'A robust trading automation tool that interfaces with financial APIs to monitor market trends. It sends real-time buy/sell signals via Telegram and features an administrative dashboard for configuring strategies, setting stop-losses, and monitoring portfolio performance.',
-    image: '/projects/Trading_Bot.png',
-    github: 'https://github.com/vishwakarma-31/trading_bot',
-    link: 'https://vishwakarma-31-trading-bot-uitrading-bot-ui-fyerl5.streamlit.app/',
-    category: 'Full Stack',
-    timeline: '2024-07-31',
-    role: 'Full Stack Engineer',
-    tech: ['Streamlit', 'Python', 'Telethon', 'FastAPI', 'MongoDB', 'Redis', 'Docker'],
-    challenges: 'Managing API rate limits and latency, handling websocket disconnections, and securely managing API keys.',
-    learnings: 'Asynchronous programming with Python, financial market mechanics, and Telegram Bot API development.'
-  },
-  {
-    slug: 'ai-interview',
-    title: 'AI Interview System',
-    description: 'Intelligent interview platform that automates candidate screening using NLP for verbal analysis and Computer Vision for proctoring.',
-    longDescription: 'An automated interview system designed to streamline the hiring process. It poses dynamic technical questions, transcribes responses in real-time, analyzes candidate sentiment and confidence via computer vision, and generates a comprehensive performance report for recruiters.',
-    image: '/projects/AI_Interview.png',
-    github: 'https://github.com/vishwakarma-31/AI-interview',
-    link: 'https://ai-interview-kappa-one.vercel.app/',
-    category: 'Machine Learning',
-    timeline: '2024-09-30',
-    role: 'Machine Learning Engineer',
-    tech: ['React', 'Tailwind CSS', 'Python', 'Flask', 'OpenAI API', 'PostgreSQL', 'OpenCV', 'Whisper AI'],
-    challenges: 'Minimizing audio transcription latency, detecting subtle cheating behaviors, and prompt engineering.',
-    learnings: 'Integration of LLMs in production, real-time audio/video processing, and Natural Language Understanding.'
-  },
-  {
-    slug: 'jarvis',
-    title: 'Jarvis Virtual Assistant',
-    description: 'A sophisticated AI virtual assistant capable of natural conversation, task automation, and system control.',
-    longDescription: 'Jarvis is a personalized AI assistant built to handle daily tasks and queries. It utilizes Large Language Models to understand context and intent, wrapped in a futuristic web interface featuring 3D visualizations. It can manage schedules, answer complex queries, and simulate a human-like conversational partner.',
-    image: '/projects/Jarvis.png',
-    github: 'https://github.com/vishwakarma-31/jarvis-ultimate',
-    link: '#',
-    category: 'Web',
-    timeline: '2024-08-31',
-    role: 'Creator & Developer',
-    tech: ['React 18', 'Three.js', 'React Three Fiber', 'Node.js', 'Express.js', 'OpenAI/Gemini API', 'Socket.io'],
-    challenges: 'Reducing voice-to-response latency, synchronizing 3D animations with speech, and handling context.',
-    learnings: 'Web Speech API implementation, 3D web graphics optimization, and WebSocket communication.'
-  }
-];
+import { getProjectBySlug, getProjects } from "@/lib/content";
+import { Project } from "@/schemas/projects";
+import { ProjectMetadata } from "@/components/composites/ProjectMetadata";
+import { CaseStudySection } from "@/components/sections/CaseStudySection";
+import { buttonVariants } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
-  return allProjects.map((p) => ({ slug: p.slug }));
+  const projects = getProjects();
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
 }
 
 type Props = {
@@ -77,125 +22,287 @@ type Props = {
 
 export default async function ProjectPage({ params }: Props) {
   const resolvedParams = await params;
-  const project = allProjects.find((p) => p.slug === resolvedParams.slug);
+  const project = getProjectBySlug(resolvedParams.slug);
 
-  if (!project) return notFound();
+  if (!project) {
+    notFound();
+  }
+
+  const projects = getProjects();
+  const currentIndex = projects.findIndex((p) => p.slug === resolvedParams.slug);
+  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
+  const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
 
   return (
-    <main className="bg-[#0d0d0d] min-h-screen text-[#8a8f98] selection:bg-[#96FF00] selection:text-black font-ui pb-32">
+    <main className="bg-background-secondary min-h-screen text-text-secondary selection:bg-accent-primary selection:text-black font-ui pb-32">
       
       {/* 1. Apple-style Hero */}
       <section className="relative w-full min-h-[70vh] flex flex-col justify-center pt-32 pb-16 px-6 lg:px-12 border-b border-[rgba(255,255,255,0.05)]">
         <div className="max-w-[1200px] mx-auto w-full">
           
           <Link href="/projects" className="inline-flex items-center text-white/40 hover:text-white transition-colors duration-200 mb-12 group text-[13px] font-code tracking-widest uppercase">
-            <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center mr-3 group-hover:bg-white/10 transition-colors">
+            <div className="w-8 h-8 rounded-full border border-border-strong flex items-center justify-center mr-3 group-hover:bg-background-elevated/10 transition-colors">
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
             </div>
             Back to Archive
           </Link>
           
+          <div className="flex items-center gap-4 mb-6">
+            <span className="px-3 py-1 rounded-full border border-border-strong text-[12px] font-code text-white/60">
+              {project.hero.status}
+            </span>
+          </div>
+
           <h1 className="text-[48px] md:text-[84px] font-marketing font-extralight tracking-tight text-white mb-8 leading-[1.05]">
-            {project.title}
+            {project.hero.title}
           </h1>
-          <p className="text-[20px] md:text-[28px] text-white/50 font-light leading-[1.5] max-w-[800px] mb-16">
-            {project.description}
+          <p className="text-[20px] md:text-[28px] text-white/50 font-light leading-[1.5] max-w-[800px] mb-12">
+            {project.hero.summary}
           </p>
 
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-[#111] rounded-[16px] border border-white/5 flex items-center justify-center overflow-hidden stripe-shadow relative group">
+          <div className="flex flex-col sm:flex-row gap-4 mb-16">
+            {project.hero.liveLink && project.hero.liveLink !== '#' && (
+              <a href={project.hero.liveLink} target="_blank" rel="noopener noreferrer" className={cn(buttonVariants({ variant: "cta", size: "lg" }), "w-full sm:w-auto")}>
+                View Live Demo
+              </a>
+            )}
+            {project.hero.githubLink && (
+              <a href={project.hero.githubLink} target="_blank" rel="noopener noreferrer" className={cn(buttonVariants({ variant: "ghost", size: "default" }), "w-full sm:w-auto")}>
+                Explore Repository
+              </a>
+            )}
+          </div>
+
+          <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-background-tertiary rounded-xl border border-border-subtle flex items-center justify-center overflow-hidden stripe-shadow relative group">
             <img 
-              src={project.image} 
-              alt={project.title} 
+              src={project.hero.image} 
+              alt={project.hero.title} 
               className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500" 
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] to-transparent opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background-secondary to-transparent opacity-50" />
           </div>
         </div>
       </section>
 
       <div className="max-w-[1000px] mx-auto px-6 lg:px-12 pt-32 pb-20 flex flex-col gap-32">
         
-        {/* Stripe-style Role & Tech Metadata Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[#111] border border-[rgba(255,255,255,0.08)] rounded-[8px] p-8 stripe-shadow hover:-translate-y-1 transition-transform duration-300">
-            <h3 className="font-code text-[11px] uppercase tracking-widest text-[#635BFF] mb-4">Role & Timeline</h3>
-            <p className="text-[20px] font-marketing font-light text-white mb-2">{project.role}</p>
-            <p className="text-[14px] text-white/40 font-ui font-light">Completed: {project.timeline}</p>
-          </div>
-          
-          <div className="bg-[#111] border border-[rgba(255,255,255,0.08)] rounded-[8px] p-8 stripe-shadow hover:-translate-y-1 transition-transform duration-300">
-            <h3 className="font-code text-[11px] uppercase tracking-widest text-[#635BFF] mb-4">Core Technologies</h3>
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((t: string) => (
-                <span key={t} className="px-3 py-1 rounded-[4px] bg-white/5 border border-white/10 text-[12px] font-code text-white/60">
-                  {t}
-                </span>
-              ))}
+        {/* 2. Executive Summary */}
+        <section className="bg-surface-hover border border-border-strong rounded-lg p-8 md:p-12">
+          <h2 className="text-[13px] font-code uppercase tracking-widest text-white/40 mb-8">Executive Summary</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-[18px] text-white font-medium mb-3">Problem</h3>
+              <p className="text-[15px] leading-relaxed text-white/60">{project.executiveSummary.problem}</p>
+            </div>
+            <div>
+              <h3 className="text-[18px] text-white font-medium mb-3">Solution</h3>
+              <p className="text-[15px] leading-relaxed text-white/60">{project.executiveSummary.solution}</p>
+            </div>
+            <div>
+              <h3 className="text-[18px] text-accent-primary font-medium mb-3">Outcome</h3>
+              <p className="text-[15px] leading-relaxed text-white/60">{project.executiveSummary.outcome}</p>
             </div>
           </div>
-        </div>
-
-        {/* Narrative Sections (Vercel & Stripe DNA) */}
-        <section className="flex flex-col gap-16 text-white/70 font-ui font-light text-[16px] leading-[1.7] max-w-[800px] mx-auto w-full">
-          
-          <div className="flex flex-col gap-6">
-            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">The Problem</h2>
-            <p>What existed? Why wasn&apos;t it good enough? Why did it matter?</p>
-            <p>{project.longDescription}</p>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">Research & Planning</h2>
-            <p>We began by analyzing existing workflows and identifying the key bottlenecks. The primary focus was on ensuring scalability and ease of use.</p>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">Architecture & Design Decisions</h2>
-            <p>The system was architected using a microservices pattern to allow independent scaling of the ML inference engine and the web API.</p>
-            
-            {/* Vercel-style Code Block */}
-            <div className="mt-4 p-6 bg-[#0d0d0d] rounded-[4px] border border-[rgba(255,255,255,0.08)] overflow-x-auto">
-              <pre className="font-code text-[13px] text-white/80 leading-[1.6]">
-                <code>{`// Example Architecture Configuration
-export const config = {
-  runtime: 'edge',
-  regions: ['iad1'],
-  memory: 1024,
-};`}</code>
-              </pre>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">Development & Challenges</h2>
-            <p>{project.challenges}</p>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            <h2 className="text-[32px] font-marketing font-medium text-white tracking-tight">Results</h2>
-            <p>{project.learnings}</p>
-          </div>
-          
         </section>
 
-        {/* Shopify-style CTA */}
-        <section className="pt-20 border-t border-[rgba(255,255,255,0.05)] flex flex-col items-center justify-center text-center gap-8">
-          <h2 className="text-[32px] md:text-[48px] font-marketing font-light tracking-tight text-white">
-            Experience it live.
-          </h2>
-          <p className="text-[16px] text-white/50 font-light mb-4">
-            Explore the deployed production build or review the source code on GitHub.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 items-center">
-            {project.link !== '#' && (
-              <a href={project.link} target="_blank" rel="noopener noreferrer" className="bg-[#96FF00] text-black font-bold text-[15px] px-8 py-4 rounded-[4px] shopify-hover font-ui tracking-tight flex items-center w-full sm:w-auto justify-center">
-                <Monitor className="w-4 h-4 mr-2" />
-                View Live Project
-              </a>
+        {/* 3. Project Metadata */}
+        <ProjectMetadata metadata={project.metadata} />
+
+        {/* 4. Narrative Sections */}
+        <div className="flex flex-col gap-24">
+          <CaseStudySection title="Problem Statement">
+            <p>{project.problem}</p>
+          </CaseStudySection>
+
+          <CaseStudySection title="Business Context">
+            <p>{project.context}</p>
+          </CaseStudySection>
+
+          <CaseStudySection title="Research & Discovery">
+            <p>{project.research}</p>
+          </CaseStudySection>
+
+          <CaseStudySection title="Requirements">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+              <div className="bg-background-tertiary p-6 rounded-md border border-border-subtle">
+                <h4 className="text-white font-medium mb-4">Functional</h4>
+                <ul className="list-disc pl-5 space-y-2 text-white/60 text-[15px]">
+                  {project.requirements.functional.map((req, i) => <li key={i}>{req}</li>)}
+                </ul>
+              </div>
+              <div className="bg-background-tertiary p-6 rounded-md border border-border-subtle">
+                <h4 className="text-white font-medium mb-4">Non-Functional</h4>
+                <ul className="list-disc pl-5 space-y-2 text-white/60 text-[15px]">
+                  {project.requirements.nonFunctional.map((req, i) => <li key={i}>{req}</li>)}
+                </ul>
+              </div>
+            </div>
+          </CaseStudySection>
+
+          <CaseStudySection title="Success Criteria">
+            <ul className="list-disc pl-5 space-y-3">
+              {project.successCriteria.map((crit, i) => <li key={i}>{crit}</li>)}
+            </ul>
+          </CaseStudySection>
+
+          <CaseStudySection title="System Architecture" isTechnical>
+            <p>{project.architecture.description}</p>
+            {project.architecture.codeSnippet && (
+              <div className="mt-6 p-6 bg-background-primary rounded-sm border border-border-strong overflow-x-auto">
+                <pre className="font-code text-[13px] text-white/80 leading-[1.6]">
+                  <code>{project.architecture.codeSnippet}</code>
+                </pre>
+              </div>
             )}
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="bg-transparent border border-white/20 text-white hover:border-white font-medium text-[15px] px-8 py-4 rounded-[4px] font-ui tracking-tight transition-colors w-full sm:w-auto justify-center flex">
-              Source Code
-            </a>
+          </CaseStudySection>
+
+          <CaseStudySection title="Technology Selection" isTechnical>
+            <div className="flex flex-col gap-6 mt-4">
+              {project.technologySelection.map((item, i) => (
+                <div key={i} className="border-l-2 border-brand-primary pl-6">
+                  <h4 className="text-white font-medium text-[18px] mb-2">{item.tech}</h4>
+                  <p className="text-white/60 text-[15px]">{item.rationale}</p>
+                </div>
+              ))}
+            </div>
+          </CaseStudySection>
+
+          <CaseStudySection title="Data Model" isTechnical>
+            <p>{project.dataModel}</p>
+          </CaseStudySection>
+
+          <CaseStudySection title="User Flow">
+            <div className="flex flex-wrap items-center gap-3 mt-4">
+              {project.userFlow.map((step, i) => (
+                <React.Fragment key={i}>
+                  <div className="bg-background-tertiary px-4 py-2 rounded-full border border-border-strong text-[14px] text-white/80">
+                    {step}
+                  </div>
+                  {i < project.userFlow.length - 1 && (
+                    <ArrowRight className="w-4 h-4 text-white/30" />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </CaseStudySection>
+
+          <CaseStudySection title="Design Decisions">
+            <p>{project.designDecisions}</p>
+          </CaseStudySection>
+
+          <CaseStudySection title="Engineering Decisions" isTechnical>
+            <p>{project.engineeringDecisions}</p>
+          </CaseStudySection>
+
+          <CaseStudySection title="Challenges & Resolutions">
+            <div className="flex flex-col gap-8 mt-4">
+              {project.challenges.map((challenge, i) => (
+                <div key={i} className="bg-background-tertiary p-8 rounded-md border border-[rgba(255,255,255,0.05)]">
+                  <h4 className="text-[18px] font-medium text-status-error mb-3">Issue: {challenge.issue}</h4>
+                  <p className="text-white/70 mb-4"><strong>Resolution:</strong> {challenge.resolution}</p>
+                  <p className="text-accent-primary/80 font-code text-[13px]">Lesson: {challenge.learned}</p>
+                </div>
+              ))}
+            </div>
+          </CaseStudySection>
+
+          <CaseStudySection title="Performance">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+              {project.performance.map((perf, i) => (
+                <div key={i} className="bg-background-primary border border-border-strong p-6 rounded-md flex flex-col items-center justify-center text-center">
+                  <p className="text-[32px] font-marketing text-white mb-2">{perf.value}</p>
+                  <p className="font-code text-[11px] uppercase tracking-widest text-white/40">{perf.metric}</p>
+                </div>
+              ))}
+            </div>
+          </CaseStudySection>
+
+          <CaseStudySection title="Security & Accessibility" isTechnical>
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-[20px] text-white mb-3 font-medium">Security</h4>
+                <p>{project.security}</p>
+              </div>
+              <div>
+                <h4 className="text-[20px] text-white mb-3 font-medium">Accessibility</h4>
+                <p>{project.accessibility}</p>
+              </div>
+            </div>
+          </CaseStudySection>
+
+          <CaseStudySection title="Responsive Strategy & Motion">
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-[20px] text-white mb-3 font-medium">Responsive Layout</h4>
+                <p>{project.responsiveStrategy}</p>
+              </div>
+              <div>
+                <h4 className="text-[20px] text-white mb-3 font-medium">Motion & Interaction</h4>
+                <p>{project.motion}</p>
+              </div>
+            </div>
+          </CaseStudySection>
+
+          <CaseStudySection title="Testing & Deployment" isTechnical>
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-[20px] text-white mb-3 font-medium">Testing Strategy</h4>
+                <p>{project.testing}</p>
+              </div>
+              <div>
+                <h4 className="text-[20px] text-white mb-3 font-medium">Deployment Pipeline</h4>
+                <p>{project.deployment}</p>
+              </div>
+            </div>
+          </CaseStudySection>
+
+          <CaseStudySection title="Results & Business Impact">
+            <p className="text-[20px] leading-relaxed text-text-primary font-light border-l-4 border-accent-primary pl-6">{project.results}</p>
+          </CaseStudySection>
+
+          <CaseStudySection title="Lessons Learned">
+            <p>{project.lessonsLearned}</p>
+          </CaseStudySection>
+
+          <CaseStudySection title="Future Roadmap">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+              <div>
+                <h4 className="text-white font-medium mb-4 flex items-center gap-2"><Code2 className="w-4 h-4 text-brand-primary" /> Planned</h4>
+                <ul className="list-disc pl-5 space-y-2 text-white/60 text-[15px]">
+                  {project.futureRoadmap.planned.map((item, i) => <li key={i}>{item}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-white font-medium mb-4 flex items-center gap-2"><Monitor className="w-4 h-4 text-accent-primary" /> Experimental</h4>
+                <ul className="list-disc pl-5 space-y-2 text-white/60 text-[15px]">
+                  {project.futureRoadmap.experimental.map((item, i) => <li key={i}>{item}</li>)}
+                </ul>
+              </div>
+            </div>
+          </CaseStudySection>
+
+        </div>
+
+        {/* 5. Navigation Footer */}
+        <section className="pt-32 border-t border-[rgba(255,255,255,0.05)] mt-16">
+          <div className="flex flex-col sm:flex-row justify-between gap-8">
+            {prevProject ? (
+              <Link href={`/projects/${prevProject.slug}`} className="group flex flex-col items-start gap-2 w-full sm:w-1/2 p-8 bg-background-tertiary border border-[rgba(255,255,255,0.05)] rounded-md hover:border-white/20 transition-colors">
+                <span className="font-code text-[11px] text-white/40 uppercase tracking-widest flex items-center gap-2">
+                  <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" /> Previous Project
+                </span>
+                <span className="text-[24px] font-marketing text-white">{prevProject.hero.title}</span>
+              </Link>
+            ) : <div className="w-full sm:w-1/2" />}
+            
+            {nextProject ? (
+              <Link href={`/projects/${nextProject.slug}`} className="group flex flex-col items-end text-right gap-2 w-full sm:w-1/2 p-8 bg-background-tertiary border border-[rgba(255,255,255,0.05)] rounded-md hover:border-white/20 transition-colors">
+                <span className="font-code text-[11px] text-white/40 uppercase tracking-widest flex items-center gap-2">
+                  Next Project <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <span className="text-[24px] font-marketing text-white">{nextProject.hero.title}</span>
+              </Link>
+            ) : <div className="w-full sm:w-1/2" />}
           </div>
         </section>
 

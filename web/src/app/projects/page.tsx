@@ -45,7 +45,7 @@ export default function ProjectsArchive() {
     : allProjects.filter(p => p.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-page-dark text-text-dark pt-32 pb-24 px-6 lg:px-12 selection:bg-[#635BFF] selection:text-white">
+    <main className="min-h-screen bg-page-dark text-text-dark pt-32 pb-24 px-6 lg:px-12 selection:bg-brand-primary selection:text-white">
       <div className="max-w-[1400px] mx-auto">
         <header className="mb-16">
           <h1 className="text-[48px] md:text-[64px] font-marketing font-light tracking-tight mb-6 leading-tight">
@@ -64,7 +64,7 @@ export default function ProjectsArchive() {
               onClick={() => setActiveCategory(cat)}
               className={`px-5 py-2.5 rounded-full text-[14px] font-ui transition-all duration-300 ${
                 activeCategory === cat 
-                  ? 'bg-white text-black font-medium' 
+                  ? 'bg-background-elevated text-black font-medium' 
                   : 'bg-[rgba(255,255,255,0.05)] text-text-secondary-dark hover:bg-[rgba(255,255,255,0.1)] hover:text-white'
               }`}
             >
@@ -84,9 +84,9 @@ export default function ProjectsArchive() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex flex-col bg-[#0d0d0d] border border-[rgba(255,255,255,0.08)] rounded-[8px] overflow-hidden hover:border-[rgba(255,255,255,0.2)] transition-colors duration-300 stripe-shadow"
+                className="group relative flex flex-col bg-background-secondary border border-border-subtle rounded-md overflow-hidden hover:border-[rgba(255,255,255,0.2)] transition-colors duration-300 stripe-shadow"
               >
-                <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#111]">
+                <div className="w-full aspect-[4/3] relative overflow-hidden bg-background-tertiary">
                   <img 
                     src={project.image} 
                     alt={project.title}
@@ -94,7 +94,7 @@ export default function ProjectsArchive() {
                   />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
-                  <span className="text-[#635BFF] font-ui text-[12px] font-medium tracking-wide uppercase mb-3">
+                  <span className="text-brand-primary font-ui text-[12px] font-medium tracking-wide uppercase mb-3">
                     {project.category}
                   </span>
                   <h3 className="text-[24px] font-marketing font-light text-white mb-3 tracking-tight">
@@ -105,7 +105,7 @@ export default function ProjectsArchive() {
                   </p>
                   <div className="mt-8">
                     <Link href={`/projects/${project.slug}`}>
-                      <button className="text-[14px] font-ui text-white font-medium hover:text-[#635BFF] transition-colors flex items-center gap-2">
+                      <button className="text-[14px] font-ui text-white font-medium hover:text-brand-primary transition-colors flex items-center gap-2">
                         View Project
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <path d="M5 12h14M12 5l7 7-7 7"/>

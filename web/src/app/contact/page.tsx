@@ -8,7 +8,7 @@ export default function ContactPage() {
   const [hoveredField, setHoveredField] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const inputClasses = "w-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[6px] px-4 py-3 text-[14px] text-white placeholder-white/30 focus:outline-none focus:border-[#635BFF] transition-all duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] font-ui";
+  const inputClasses = "w-full bg-[rgba(255,255,255,0.03)] border border-border-subtle rounded-md px-4 py-3 text-[14px] text-white placeholder-white/30 focus:outline-none focus:border-brand-primary transition-all duration-150 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] font-ui";
 
   // Handle ⌘+Enter / Ctrl+Enter keyboard shortcut
   useEffect(() => {
@@ -50,10 +50,10 @@ export default function ContactPage() {
 
   if (status === "success") {
     return (
-      <div className="w-full flex flex-col min-h-screen bg-[#000000] text-[#8a8f98] selection:bg-[#96FF00] selection:text-black">
+      <div className="w-full flex flex-col min-h-screen bg-background-primary text-text-secondary selection:bg-accent-primary selection:text-black">
         <section className="w-full min-h-screen flex items-center justify-center px-6 lg:px-12 py-32">
           <div className="max-w-[600px] w-full flex flex-col gap-8 text-center items-center">
-            <div className="w-16 h-16 rounded-full bg-[#96FF00]/10 border border-[#96FF00]/30 flex items-center justify-center text-[#96FF00]">
+            <div className="w-16 h-16 rounded-full bg-accent-primary/10 border border-accent-primary/30 flex items-center justify-center text-accent-primary">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M20 6L9 17l-5-5"/>
               </svg>
@@ -64,7 +64,7 @@ export default function ContactPage() {
             </p>
             <button 
               onClick={() => setStatus("idle")}
-              className="bg-transparent border border-white/20 text-white hover:border-white font-medium text-[14px] px-8 py-3 rounded-[4px] font-ui transition-colors mt-4 linear-hover"
+              className="bg-transparent border border-white/20 text-white hover:border-white font-medium text-[14px] px-8 py-3 rounded-sm font-ui transition-colors mt-4 linear-hover"
             >
               Send Another
             </button>
@@ -75,7 +75,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="w-full flex flex-col min-h-screen bg-[#000000] text-[#8a8f98] selection:bg-[#96FF00] selection:text-black">
+    <div className="w-full flex flex-col min-h-screen bg-background-primary text-text-secondary selection:bg-accent-primary selection:text-black">
       <section className="w-full min-h-screen flex items-center justify-center px-6 lg:px-12 py-32">
         <div className="max-w-[560px] w-full flex flex-col gap-12">
           
@@ -113,7 +113,7 @@ export default function ContactPage() {
             >
               <label htmlFor="name" className="text-[13px] font-ui text-white/80 tracking-[0.01em]">Name</label>
               <input type="text" id="name" name="name" required placeholder="Jane Doe" className={inputClasses} />
-              <div className={`absolute top-[34px] right-3 flex items-center justify-center px-1.5 h-[18px] rounded-[3px] bg-[rgba(255,255,255,0.08)] text-[11px] font-code text-white/40 transition-opacity duration-150 pointer-events-none ${hoveredField === 'name' ? 'opacity-100' : 'opacity-0'}`}>
+              <div className={`absolute top-[34px] right-3 flex items-center justify-center px-1.5 h-[18px] rounded-[3px] bg-surface-hover text-[11px] font-code text-white/40 transition-opacity duration-150 pointer-events-none ${hoveredField === 'name' ? 'opacity-100' : 'opacity-0'}`}>
                 N
               </div>
             </div>
@@ -125,7 +125,7 @@ export default function ContactPage() {
             >
               <label htmlFor="email" className="text-[13px] font-ui text-white/80 tracking-[0.01em]">Email</label>
               <input type="email" id="email" name="email" required placeholder="jane@example.com" className={inputClasses} />
-              <div className={`absolute top-[34px] right-3 flex items-center justify-center px-1.5 h-[18px] rounded-[3px] bg-[rgba(255,255,255,0.08)] text-[11px] font-code text-white/40 transition-opacity duration-150 pointer-events-none ${hoveredField === 'email' ? 'opacity-100' : 'opacity-0'}`}>
+              <div className={`absolute top-[34px] right-3 flex items-center justify-center px-1.5 h-[18px] rounded-[3px] bg-surface-hover text-[11px] font-code text-white/40 transition-opacity duration-150 pointer-events-none ${hoveredField === 'email' ? 'opacity-100' : 'opacity-0'}`}>
                 E
               </div>
             </div>
@@ -137,7 +137,7 @@ export default function ContactPage() {
             >
               <label htmlFor="message" className="text-[13px] font-ui text-white/80 tracking-[0.01em]">Message</label>
               <textarea id="message" name="message" required placeholder="Tell me about your project..." rows={5} className={`${inputClasses} resize-none`} />
-              <div className={`absolute top-[34px] right-3 flex items-center justify-center px-1.5 h-[18px] rounded-[3px] bg-[rgba(255,255,255,0.08)] text-[11px] font-code text-white/40 transition-opacity duration-150 pointer-events-none ${hoveredField === 'message' ? 'opacity-100' : 'opacity-0'}`}>
+              <div className={`absolute top-[34px] right-3 flex items-center justify-center px-1.5 h-[18px] rounded-[3px] bg-surface-hover text-[11px] font-code text-white/40 transition-opacity duration-150 pointer-events-none ${hoveredField === 'message' ? 'opacity-100' : 'opacity-0'}`}>
                 M
               </div>
             </div>
@@ -148,17 +148,17 @@ export default function ContactPage() {
 
             <div className="pt-4 flex items-center justify-between">
               <span className="text-[12px] text-white/40 font-code flex items-center gap-1">
-                <span className="px-1.5 py-0.5 rounded bg-white/10 text-white/60">⌘</span> + <span className="px-1.5 py-0.5 rounded bg-white/10 text-white/60">Enter</span> to send
+                <span className="px-1.5 py-0.5 rounded bg-background-elevated/10 text-white/60">⌘</span> + <span className="px-1.5 py-0.5 rounded bg-background-elevated/10 text-white/60">Enter</span> to send
               </span>
               <button 
                 type="submit"
                 disabled={status === "submitting"}
-                className="bg-[#96FF00] text-black font-bold text-[15px] px-8 py-3 rounded-[4px] shopify-hover font-ui tracking-tight disabled:opacity-50 flex items-center justify-center min-w-[150px]"
+                className="bg-accent-primary text-black font-bold text-[15px] px-8 py-3 rounded-sm shopify-hover font-ui tracking-tight disabled:opacity-50 flex items-center justify-center min-w-[150px]"
               >
                 {status === "submitting" ? (
                   <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />
                 ) : (
-                  "Send Message"
+                "Send Message"
                 )}
               </button>
             </div>

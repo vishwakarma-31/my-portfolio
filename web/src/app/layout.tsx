@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Barlow_Condensed, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { Navigation } from "@/components/Navigation";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { Navigation } from "@/components/layout/Navigation";
+import { CustomCursor } from "@/components/layout/CustomCursor";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -10,8 +11,8 @@ const inter = Inter({
 });
 
 const barlowCondensed = Barlow_Condensed({
-  variable: "--font-barlow-condensed",
-  weight: ["200", "300", "400", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-barlow",
   subsets: ["latin"],
 });
 
@@ -21,6 +22,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://aryanvishwakarma.dev"),
   title: "Aryan Vishwakarma — Software Engineer & Product Architect",
   description: "I design and build software that turns complex problems into elegant, reliable digital products.",
   openGraph: {
@@ -55,9 +57,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${barlowCondensed.variable} ${geistMono.variable} font-sans h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${barlowCondensed.variable} font-sans h-full antialiased`}
     >
-      <body className="min-h-full flex bg-page-light dark:bg-page-dark selection:bg-[#635BFF] selection:text-white">
+      <body className="min-h-full flex bg-page-light dark:bg-page-dark selection:bg-brand-primary selection:text-white">
+        <CustomCursor />
         <Navigation />
         <div className="flex-1 lg:pl-[240px] flex flex-col min-w-0">
           <SmoothScroll>{children}</SmoothScroll>

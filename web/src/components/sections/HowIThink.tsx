@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -24,42 +24,57 @@ const principles = [
 
 export function HowIThink() {
   const container = useRef<HTMLElement>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   useGSAP(() => {
-    gsap.fromTo(".principle-item",
-      { opacity: 0, y: 30 },
+    gsap.fromTo(".principle-container",
+      { opacity: 0, y: 20 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
+        duration: 0.7,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: container.current,
-          start: "top 75%",
+          start: "top 80%",
         }
       }
     );
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-32 bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] px-6">
-      <div className="max-w-[900px] mx-auto">
-        <h2 className="text-[clamp(32px,4vw,56px)] font-marketing font-light tracking-[-0.03em] mb-24 opacity-0 principle-item">
-          How I make engineering decisions.
+    <section ref={container} className="dark py-48 bg-background-elevated text-text-primary px-6 md:px-12 xl:px-24 border-t border-border-subtle">
+      <div className="max-w-[760px] mx-auto principle-container opacity-0">
+        <h2 className="type-caption uppercase tracking-[0.08em] text-brand-primary mb-16">
+          Engineering Philosophy
         </h2>
         
-        <div className="flex flex-col gap-16">
-          {principles.map((p, i) => (
-            <div key={i} className="principle-item opacity-0 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 md:gap-16 items-start">
-              <h3 className="text-[20px] font-marketing font-normal">
-                {p.title}
-              </h3>
-              <p className="text-[17px] font-marketing font-light text-black/60 dark:text-white/60 leading-relaxed">
-                {p.desc}
-              </p>
-            </div>
-          ))}
+        <div className="flex flex-col gap-6">
+          {principles.map((p, i) => {
+            const isActive = activeIndex === i;
+            return (
+              <div 
+                key={i} 
+                className={`flex flex-col border-l-2 pl-6 linear-hover cursor-pointer ${isActive ? "border-brand-primary" : "border-border-subtle hover:border-text-secondary"}`}
+                onMouseEnter={() => setActiveIndex(i)}
+                onClick={() => setActiveIndex(i)}
+              >
+                <h3 className={`type-h3 tracking-tight linear-hover ${isActive ? "text-text-primary" : "text-text-secondary"}`}>
+                  {p.title}
+                </h3>
+                
+                <div 
+                  className={`grid transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isActive ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 mt-0"}`}
+                >
+                  <div className="overflow-hidden">
+                    <p className="type-body-large text-text-secondary leading-relaxed max-w-[640px]">
+                      {p.desc}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

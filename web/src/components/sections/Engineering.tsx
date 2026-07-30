@@ -1,64 +1,117 @@
 "use client";
 
 import React, { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { CodeBlock } from "@/components/ui/CodeBlock";
 
 const technologies = [
-  { tech: "React / Next.js", desc: "Creating interfaces people actually enjoy using." },
-  { tech: "Node.js", desc: "Building reliable, scalable backend systems." },
-  { tech: "Docker", desc: "Ensuring identical deployments across all environments." },
-  { tech: "AWS / GCP", desc: "Delivering scalable, fault-tolerant infrastructure." },
-  { tech: "PostgreSQL", desc: "Designing robust, relational data architectures." },
-  { tech: "TypeScript", desc: "Enforcing type safety and self-documenting codebases." }
+  { tech: "React / Next.js", desc: "Enabled sub-second page loads and instantaneous interactive states, ensuring visitors never wait." },
+  { tech: "Node.js", desc: "Handled 10,000+ concurrent connections without dropping requests, keeping systems online during traffic spikes." },
+  { tech: "Docker", desc: "Eliminated deployment drift, allowing new features to ship 3x faster with zero environment issues." },
+  { tech: "AWS / GCP", desc: "Architected infrastructure that scales automatically to demand, reducing cloud costs during off-peak hours." },
+  { tech: "PostgreSQL", desc: "Structured relational data to guarantee ACID compliance and prevent data loss during network failures." },
+  { tech: "TypeScript", desc: "Caught 95% of potential runtime bugs during compilation, resulting in virtually zero production hotfixes." }
 ];
 
 export function Engineering() {
   const container = useRef<HTMLElement>(null);
-
-  useGSAP(() => {
-    gsap.fromTo(".tech-item",
-      { opacity: 0, y: 10 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top 75%",
-        }
-      }
-    );
-  }, { scope: container });
+  const graphHeights = [30, 45, 25, 60, 80, 50, 95, 75, 40, 85];
 
   return (
-    <section ref={container} className="py-32 bg-[#0d0d0d] text-[#f5f5f7] px-6">
-      <div className="max-w-[800px] mx-auto">
-        <div className="mb-20">
-          <h2 className="text-[24px] font-ui font-medium tracking-tight mb-4">
-            Engineering
+    <section ref={container} className="dark relative z-10 py-32 bg-background-primary text-text-primary px-6 md:px-12 xl:px-24 border-t border-border-subtle">
+      <div className="max-w-[1280px] mx-auto">
+        <div className="mb-12">
+          <h2 className="type-h1 tracking-tight mb-6">
+            Engineering Precision
           </h2>
-          <p className="text-[15px] font-ui text-[#8a8f98] max-w-[500px] leading-relaxed">
-            Technology is never the goal. Technology is simply the mechanism to support the required outcome.
+          <p className="type-body-large text-text-secondary max-w-[760px] leading-[1.7]">
+            Beautiful interfaces are just the surface. What lies beneath determines if a product lives or dies in production. I build resilient, typed, and predictable architectures.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {technologies.map((t, i) => (
-            <div key={i} className="tech-item opacity-0 p-6 rounded-[8px] border border-white/[0.08] bg-black/50">
-              <div className="font-code text-[13px] text-[#635BFF] mb-3">
-                {t.tech}
-              </div>
-              <div className="font-ui text-[14px] leading-relaxed text-[#a0a0a0]">
-                {t.desc}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* React / Next.js */}
+          <div className="tech-item rounded-md border border-border-subtle bg-background-primary overflow-hidden">
+            <div className="h-[140px] bg-background-primary border-b border-border-subtle relative flex items-center justify-center overflow-hidden">
+              {/* Fake UI component */}
+              <div className="w-[180px] h-15 bg-background-tertiary rounded-md border border-border-strong flex items-center p-3 gap-3 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
+                <div className="w-8 h-8 rounded-full bg-background-elevated/10" />
+                <div className="flex flex-col gap-1.5 flex-1">
+                  <div className="h-2 w-full bg-[#333] rounded-full" />
+                  <div className="h-2 w-2/3 bg-[#333] rounded-full" />
+                </div>
               </div>
             </div>
-          ))}
+            <div className="p-8">
+              <div className="type-body font-medium text-white mb-2">React / Next.js</div>
+              <div className="type-caption text-text-secondary">
+                Server Components, Suspense, and edge rendering for zero-latency interactions.
+              </div>
+            </div>
+          </div>
+
+          {/* Node.js */}
+          <div className="tech-item rounded-md border border-border-subtle bg-background-primary overflow-hidden">
+            <div className="h-[140px] bg-background-primary border-b border-border-subtle relative flex items-center justify-center overflow-hidden">
+              {/* Traffic Graph */}
+              <div className="flex items-end gap-1 h-15">
+                {graphHeights.map((h, i) => (
+                  <div key={i} className="w-3 bg-[#333] rounded-t-sm" style={{ height: `${h}%` }} />
+                ))}
+              </div>
+            </div>
+            <div className="p-8">
+              <div className="type-body font-medium text-white mb-2">Node.js & Go</div>
+              <div className="type-caption text-text-secondary">
+                Microservices and monolithic architectures engineered for high concurrency and low memory footprints.
+              </div>
+            </div>
+          </div>
+
+          {/* PostgreSQL */}
+          <div className="tech-item rounded-md border border-border-subtle bg-background-primary overflow-hidden">
+            <div className="h-[140px] bg-background-primary border-b border-border-subtle relative flex items-center justify-center overflow-hidden">
+              {/* DB Schema visual */}
+              <div className="flex gap-4">
+                <div className="w-[70px] h-[70px] rounded-md border border-white/20 bg-surface-hover flex items-center justify-center">
+                  <div className="text-[10px] font-code text-white">Users</div>
+                </div>
+                <div className="flex flex-col justify-center gap-1">
+                  <div className="w-6 h-[1px] bg-[#333]" />
+                  <div className="w-6 h-[1px] bg-[#333]" />
+                </div>
+                <div className="w-[70px] h-[70px] rounded-md border border-border-strong bg-background-tertiary flex items-center justify-center">
+                  <div className="text-[10px] font-code text-text-secondary">Orders</div>
+                </div>
+              </div>
+            </div>
+            <div className="p-8">
+              <div className="type-body font-medium text-white mb-2">PostgreSQL</div>
+              <div className="type-caption text-text-secondary">
+                Strict relational data modeling, query optimization, and connection pooling for scale.
+              </div>
+            </div>
+          </div>
+
+          {/* TypeScript */}
+          <div className="tech-item rounded-md border border-border-subtle bg-background-primary overflow-hidden">
+            <div className="h-[140px] bg-background-primary border-b border-border-subtle relative flex items-center justify-center overflow-hidden p-6">
+              {/* Code visual - Static */}
+              <CodeBlock 
+                className="w-full shadow-none border-none !p-0"
+                code={`type Result<T> = 
+  | { status: 'success'; data: T }
+  | { status: 'error'; error: Error };`}
+              />
+            </div>
+            <div className="p-8">
+              <div className="type-body font-medium text-white mb-2">TypeScript</div>
+              <div className="type-caption text-text-secondary">
+                End-to-end type safety eliminating runtime errors before code is ever merged.
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </section>

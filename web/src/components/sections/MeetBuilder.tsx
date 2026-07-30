@@ -4,6 +4,7 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,12 +13,12 @@ export function MeetBuilder() {
 
   useGSAP(() => {
     gsap.fromTo(".builder-content",
-      { opacity: 0, y: 30 },
+      { opacity: 0, y: 10 },
       {
         opacity: 1,
         y: 0,
-        duration: 1,
-        ease: "power3.out",
+        duration: 0.7,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: container.current,
           start: "top 85%",
@@ -29,39 +30,68 @@ export function MeetBuilder() {
   return (
     <section 
       ref={container}
-      className="py-32 bg-[#f5f5f7] dark:bg-[#000000] text-[#1d1d1f] dark:text-[#f5f5f7] px-6 flex justify-center"
+      className="dark py-32 bg-background-primary text-text-primary px-6 md:px-12 xl:px-24 flex justify-center border-t border-border-subtle"
     >
-      <div className="builder-content opacity-0 max-w-[900px] w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        {/* Handcrafted Graphic Silhouette Frame */}
-        <div className="aspect-[4/5] relative bg-[#09090b] rounded-2xl overflow-hidden border border-white/10 p-6 flex flex-col justify-between stripe-shadow group">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-code text-[#635BFF] tracking-wider uppercase">BUILDER PROFILE</span>
-            <div className="w-2 h-2 rounded-full bg-[#96FF00] animate-pulse" />
-          </div>
+      <div className="builder-content opacity-0 max-w-[1280px] w-full grid grid-cols-1 lg:grid-cols-[4fr_6fr] gap-12 lg:gap-24 items-center">
+        
+        {/* Linear-style Precision Avatar Container */}
+        <div className="relative aspect-square md:aspect-[3/4] rounded-lg bg-background-elevated border border-border-subtle overflow-hidden group flex flex-col justify-end p-6 transition-all duration-[400ms] hover:border-border-subtle0 hover:shadow-[0_0_40px_rgba(255,255,255,0.1)]">
+          {/* Portrait Image */}
+          <Image 
+            src="/images/builder_portrait.png" 
+            alt="Builder Portrait" 
+            fill 
+            className="object-cover opacity-60 mix-blend-luminosity grayscale group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-700" 
+          />
+          {/* Subtle noise and gradient overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[rgba(255,255,255,0.05)] via-transparent to-[rgba(0,0,0,0.9)] pointer-events-none" />
           
-          <div className="my-auto flex flex-col items-center justify-center text-center py-10">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#635BFF] to-[#96FF00] p-[2px] mb-6 shadow-lg shadow-[#635BFF]/20 group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full rounded-full bg-[#0d0d0d] flex items-center justify-center text-white font-marketing font-light text-2xl">
-                AV
-              </div>
-            </div>
-            <h3 className="text-white text-lg font-marketing font-medium mb-1">Aryan Vishwakarma</h3>
-            <p className="text-[13px] font-ui text-[#8a8f98]">Product Engineer &amp; Architect</p>
-          </div>
+          <div className="absolute top-6 left-6 type-caption text-white tracking-[0.08em] uppercase font-display z-10">Profile</div>
 
-          <div className="pt-4 border-t border-white/5 flex items-center justify-between text-[11px] font-code text-[#8a8f98]">
-            <span>LOC: INDIA</span>
-            <span>EXP: 5+ YRS</span>
+          <div className="relative z-10">
+            <h3 className="text-white type-body-large font-medium tracking-tight mb-1">Aryan Vishwakarma</h3>
+            <p className="type-caption text-text-secondary mb-4">Product Engineer &amp; Architect</p>
+            
+            <div className="pt-4 border-t border-border-subtle flex items-center justify-between type-tiny font-code text-text-muted">
+              <span>LOC: INDIA</span>
+              <span>EXP: 5+ YRS</span>
+            </div>
           </div>
         </div>
         
         <div>
-          <h2 className="text-xs font-ui font-semibold uppercase tracking-[0.1em] text-[#635BFF] mb-8">
+          <h2 className="font-display font-black text-[clamp(64px,14vw,180px)] leading-[0.85] tracking-[0.03em] uppercase mb-6">
             The Builder
           </h2>
-          <p className="text-[clamp(20px,2.5vw,28px)] font-marketing font-light leading-[1.6] tracking-[-0.01em]">
-            I engineer software with discipline, speed, and focus. Writing code is straightforward—building products that people love and businesses trust requires engineering rigor and product empathy.
-          </p>
+          
+          <div className="flex flex-col gap-8 type-body-large text-text-primary leading-[1.6]">
+            {/* Intro */}
+            <p>
+              I am a product engineer and architect. I build software with the rigor it deserves, ensuring predictable execution and transparent communication.
+            </p>
+            
+            {/* Timeline */}
+            <div className="pl-4 border-l border-white/30 type-body">
+              <div className="mb-2"><span className="text-white font-medium mr-2 font-display uppercase">2019</span> Senior Engineer at Nexus</div>
+              <div className="mb-2"><span className="text-white font-medium mr-2 font-display uppercase">2021</span> Lead Architect at Lumina</div>
+              <div><span className="text-white font-medium mr-2 font-display uppercase">2023</span> Independent Consultant</div>
+            </div>
+            
+            {/* Core Values */}
+            <ul className="list-disc pl-5 type-body">
+              <li>Absolute ownership of the outcome.</li>
+              <li>Simplicity over cleverness.</li>
+              <li>Respect for the user's time and device.</li>
+            </ul>
+            
+            {/* Current Focus */}
+            <p className="type-caption text-text-secondary">
+              <strong className="text-white font-medium">Current Focus:</strong> Building high-frequency data applications and exploring edge-compute architectures.
+            </p>
+          </div>
+          <div className="flex gap-4">
+            {/* Availability moved to Hero */}
+          </div>
         </div>
       </div>
     </section>

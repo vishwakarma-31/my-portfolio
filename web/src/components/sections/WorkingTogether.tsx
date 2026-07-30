@@ -7,64 +7,98 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
-  { week: "Week One", title: "Understand the business.", desc: "We map the exact problem space, define constraints, and align on what success actually looks like. No code is written until the destination is clear." },
-  { week: "Week Two", title: "Prototype.", desc: "Rapid validation. I build high-fidelity interactive prototypes to test assumptions before committing to an architecture." },
-  { week: "Week Three", title: "Build.", desc: "Engineering execution. Clean architecture, rigorous testing, and daily transparent updates on progress." },
-  { week: "Launch", title: "Deploy and scale.", desc: "Zero-downtime deployment. I monitor the rollout, ensuring the infrastructure handles real-world usage gracefully." },
-  { week: "Support", title: "Iterate and maintain.", desc: "Software is never 'done'. I provide ongoing support, resolving edge cases and scaling the system as your business grows." }
-];
+import { getHomepageData } from "@/lib/content";
+
+const { steps } = getHomepageData();
 
 export function WorkingTogether() {
   const container = useRef<HTMLElement>(null);
 
   useGSAP(() => {
+    // Reveal cards
     gsap.fromTo(".step-card",
-      { opacity: 0, y: 20 },
+      { opacity: 0, y: 30 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.6,
-        stagger: 0.1,
+        duration: 0.7,
+        stagger: 0.12,
         ease: "power2.out",
         scrollTrigger: {
           trigger: container.current,
-          start: "top 70%",
+          start: "top 60%",
         }
       }
     );
+
+    // Animate progress line
+    gsap.to(".timeline-progress", {
+      scaleY: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top 50%",
+        end: "bottom 80%",
+        scrub: true,
+      }
+    });
+
+    // Light up nodes
+    const nodes = gsap.utils.toArray('.inner-glow');
+    nodes.forEach((node) => {
+      gsap.to(node as HTMLElement, {
+        opacity: 1,
+        duration: 0.2,
+        scrollTrigger: {
+          trigger: (node as HTMLElement).closest('.step-card'),
+          start: "top 60%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
   }, { scope: container });
 
   return (
-    <section ref={container} className="py-32 bg-[#1a1a1a] text-white px-6 border-y border-white/[0.08]">
-      <div className="max-w-[800px] mx-auto">
-        <h2 className="text-[clamp(28px,3vw,40px)] font-ui font-medium tracking-[-0.02em] mb-24 text-center">
+    <section ref={container} className="py-32 bg-[#0d0d0d] text-white px-6 md:px-12 xl:px-24 border-y border-[#333]">
+      <div className="max-w-[760px] mx-auto">
+        <h2 className="type-display-m font-extralight tracking-[-0.02em] mb-12">
           What Working Together Feels Like
         </h2>
         
-        <div className="flex flex-col relative">
-          
-          {steps.map((step, i) => (
-            <div 
-              key={i} 
-              className="step-card opacity-0 group relative flex flex-col md:flex-row items-start md:items-center rounded-md p-4 md:p-6 linear-hover hover:bg-white/[0.04]"
-            >
-              <div className="w-full md:w-[140px] shrink-0 mb-2 md:mb-0">
-                <span className="text-[12px] font-ui font-medium uppercase tracking-widest text-[#8a8f98] group-hover:text-white transition-colors duration-200">
-                  {step.week}
-                </span>
+        <div className="relative pl-8 md:pl-12">
+          {/* Vertical Progress Line */}
+          <div className="absolute left-[7px] md:left-[15px] top-4 bottom-12 w-[1px] bg-white/10">
+            <div className="timeline-progress w-full bg-brand-primary origin-top scale-y-0" style={{ height: '100%' }} />
+          </div>
+
+          <div className="flex flex-col gap-12">
+            {steps.map((step, i) => (
+              <div 
+                key={i} 
+                className="step-card opacity-0 group relative flex flex-col items-start pt-2"
+              >
+                {/* Glowing Node */}
+                <div className="timeline-node absolute -left-[29px] md:-left-[37px] top-3 w-4 h-4 rounded-full border border-white/20 bg-[#0a0a0a] flex items-center justify-center transition-all duration-300 z-10">
+                  <div className="inner-glow w-1.5 h-1.5 rounded-full bg-brand-primary opacity-0 transition-opacity duration-300 shadow-[0_0_10px_#635BFF]" />
+                </div>
+                
+                <div className="mb-2">
+                  <span className="type-tiny text-brand-primary tracking-[0.08em] uppercase">
+                    {step.week}
+                  </span>
+                </div>
+                
+                <div>
+                  <h3 className="type-h4 font-medium text-white mb-2 tracking-tight">
+                    {step.title}
+                  </h3>
+                  <p className="type-body text-white/60 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
               </div>
-              
-              <div className="flex-1">
-                <h3 className="text-[15px] font-ui font-medium text-white mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-[14px] font-ui text-[#8a8f98] leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
