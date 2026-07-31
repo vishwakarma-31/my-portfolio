@@ -48,22 +48,36 @@ export function HowIThink() {
         <h2 className="type-caption uppercase tracking-[0.08em] text-brand-primary mb-16">
           Engineering Philosophy
         </h2>
-        
+
         <div className="flex flex-col gap-6">
           {principles.map((p, i) => {
             const isActive = activeIndex === i;
             return (
-              <div 
-                key={i} 
-                className={`flex flex-col border-l-2 pl-6 linear-hover cursor-pointer ${isActive ? "border-brand-primary" : "border-border-subtle hover:border-text-secondary"}`}
+              <div
+                key={i}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isActive}
+                aria-controls={`accordion-content-${i}`}
+                id={`accordion-header-${i}`}
+                className={`flex flex-col border-l-2 pl-6 linear-hover cursor-pointer outline-none focus-visible:border-brand-primary ${isActive ? "border-brand-primary" : "border-border-subtle hover:border-text-secondary"}`}
                 onMouseEnter={() => setActiveIndex(i)}
                 onClick={() => setActiveIndex(i)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveIndex(i);
+                  }
+                }}
               >
                 <h3 className={`type-h3 tracking-tight linear-hover ${isActive ? "text-text-primary" : "text-text-secondary"}`}>
                   {p.title}
                 </h3>
-                
-                <div 
+
+                <div
+                  id={`accordion-content-${i}`}
+                  role="region"
+                  aria-labelledby={`accordion-header-${i}`}
                   className={`grid transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isActive ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 mt-0"}`}
                 >
                   <div className="overflow-hidden">

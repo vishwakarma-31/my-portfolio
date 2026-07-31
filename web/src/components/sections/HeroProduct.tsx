@@ -15,44 +15,48 @@ export function HeroProduct() {
 
   useGSAP(() => {
     const tl = gsap.timeline();
-    
+
     tl.fromTo(".hero-word",
       { opacity: 0, y: 32 },
       { opacity: 1, y: 0, duration: 1.2, stagger: 0.1, ease: "power3.inOut", delay: 0.2 }
     )
-    .to(subheadlineRef.current,
-      { opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut" },
-    "-=0.6"
-    )
-    .to(ctaRef.current,
-      { opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut" },
-    "-=0.8"
-    );
+      .to(subheadlineRef.current,
+        { opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut" },
+        "-=0.6"
+      )
+      .to(ctaRef.current,
+        { opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut" },
+        "-=0.8"
+      );
+
+    gsap.to(".hero-nav", { opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut", delay: 0.1 });
+    gsap.to(".hero-role", { opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut", delay: 0.2 });
+    gsap.to(".hero-line", { opacity: 0.5, duration: 1.2, ease: "power3.inOut", delay: 1.5 });
   }, { scope: container });
 
   return (
     <section 
       ref={container}
-      className="min-h-screen flex flex-col items-center justify-center bg-background-primary  text-text-primary  px-6 md:px-12 xl:px-24 py-24"
+      className="dark min-h-screen flex flex-col items-center justify-center bg-background-elevated text-text-primary px-6 md:px-12 xl:px-24 py-24"
     >
       <div className="max-w-[1280px] w-full text-center flex flex-col items-center relative z-10">
-        
+
         {/* Navigation & Availability (Minimal Apple/Linear DNA) */}
-        <div className="absolute -top-16 left-0 right-0 flex justify-between items-center opacity-0 translate-y-4" ref={(el) => { if (el) { gsap.to(el, { opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut", delay: 0.1 }) } }}>
-          <div className="type-h4 tracking-tight font-display">AV.</div>
-          <div className={badgeVariants({ variant: "default" })}>
-            <div className="w-1.5 h-1.5 rounded-lg bg-accent-primary shadow-[0_0_8px_#96FF00] mr-2" />
+        <div className="hero-nav absolute -top-16 left-0 right-0 flex justify-between items-center opacity-0 translate-y-4">
+          <div className="text-[17px] font-semibold tracking-[-0.374px]">AV.</div>
+          <div className="inline-flex items-center rounded-full px-3 py-1 text-[12px] font-medium leading-[1.5] bg-surface-default text-text-primary">
+            <div className="w-1.5 h-1.5 rounded-full bg-brand-primary mr-2" />
             Available for new projects
           </div>
         </div>
-        
-        <div className="type-caption text-brand-primary uppercase tracking-[0.08em] mb-4 opacity-0 translate-y-4" ref={(el) => { if (el) { gsap.to(el, { opacity: 1, y: 0, duration: 1.2, ease: "power3.inOut", delay: 0.2 }) } }}>
+
+        <div className="hero-role text-[14px] font-semibold tracking-[-0.224px] uppercase mb-4 opacity-0 translate-y-4 text-text-secondary">
           Product Architect
         </div>
-        
-        <h1 
+
+        <h1
           ref={headlineRef}
-          className="type-display-xl tracking-[-0.04em] mb-6 flex flex-wrap justify-center gap-x-[0.25em]"
+          className="type-apple-headline mb-6 flex flex-wrap justify-center gap-x-[0.25em]"
         >
           {["Great", "businesses", "deserve", "great", "software."].map((word, i) => (
             <span key={i} className="overflow-hidden">
@@ -60,10 +64,10 @@ export function HeroProduct() {
             </span>
           ))}
         </h1>
-        
+
         <p 
           ref={subheadlineRef}
-          className="type-body-large text-text-secondary  max-w-[640px] mx-auto mb-10 opacity-0 translate-y-6"
+          className="text-[17px] md:text-[24px] font-light leading-[1.5] text-text-secondary max-w-[640px] mx-auto mb-10 opacity-0 translate-y-6"
         >
           I design and build software that turns complex problems into elegant, reliable solutions.
         </p>
@@ -71,21 +75,20 @@ export function HeroProduct() {
         <div ref={ctaRef} className="flex flex-col sm:flex-row items-center gap-4 opacity-0 translate-y-6">
           <Link 
             href="#work"
-            className={buttonVariants({ variant: "cta", size: "default" })}
+            className={buttonVariants({ variant: "default" })}
           >
             View My Work
           </Link>
           <Link 
             href="/contact"
-            className={buttonVariants({ variant: "ghost", size: "default" })}
+            className={buttonVariants({ variant: "secondary" })}
           >
             Let's Build Together
           </Link>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0" ref={(el) => { if (el) { gsap.to(el, { opacity: 0.5, duration: 1.2, ease: "power3.inOut", delay: 1.5 }); } }}>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-text-primary dark:from-text-primary to-transparent" />
+        <div className="hero-line absolute -bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0">
+          <div className="w-[1px] h-12 bg-gradient-to-b from-text-primary to-transparent" />
         </div>
       </div>
     </section>

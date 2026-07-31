@@ -16,7 +16,7 @@ export function CodeBlock({
   return (
     <div
       className={cn(
-      "font-code text-[13px] text-text-muted leading-[1.6] bg-[#0d0d0d] p-6 rounded border border-white/10 overflow-x-auto",
+      "font-code text-[13px] text-text-secondary leading-[1.6] bg-[#0d0d0d] p-6 rounded-[4px] border border-[rgba(255,255,255,0.08)] overflow-x-auto selection:bg-white/30",
         className
       )}
     >

@@ -13,6 +13,7 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { Philosophy } from "@/components/sections/Philosophy";
 import { FinalMoment } from "@/components/sections/FinalMoment";
+import { ShopifyPitch } from "@/components/sections/ShopifyPitch";
 
 export default function Home() {
   return (
@@ -42,6 +43,7 @@ export default function Home() {
       
       {/* 13 & 14: Conversion */}
       <Philosophy />
+      <ShopifyPitch />
       <FinalMoment />
     </main>
   );

@@ -61,13 +61,13 @@ export function FinalMoment() {
   };
 
   return (
-    <section ref={container} className="dark py-48 flex items-center justify-center bg-background-elevated text-white px-6 md:px-12 xl:px-24">
+    <section ref={container} className="dark py-48 flex items-center justify-center bg-[#111111] text-[#ffffff] px-6 md:px-12 xl:px-24">
       <div className="final-content opacity-0 max-w-[760px] text-center flex flex-col items-center">
-        <h2 className="font-display font-black text-[clamp(64px,14vw,180px)] leading-[0.85] tracking-[0.03em] uppercase mb-12">
+        <h2 className="font-medium text-[clamp(64px,14vw,180px)] leading-[0.9] tracking-[0px] uppercase mb-12">
           Ready to build?
         </h2>
         
-        <p className="type-body-large text-white/60 mb-10">
+        <p className="text-[16px] font-medium leading-[1.5] text-[#9e9ea0] mb-10 max-w-[600px]">
           Let's discuss your architecture, constraints, and how we can build something exceptional together.
         </p>
         
@@ -75,12 +75,12 @@ export function FinalMoment() {
           <Link 
             href="/contact"
             onPointerDown={handlePointerDown}
-            className={buttonVariants({ variant: "cta", size: "lg" })}
+            className="inline-flex items-center justify-center bg-[#ffffff] text-[#111111] text-[24px] font-medium rounded-full px-[32px] h-[48px] transition-transform duration-150 active:scale-50 active:opacity-50"
           >
             Start a Project
           </Link>
           
-          <Link href="https://github.com" className={buttonVariants({ variant: "ghost", size: "default" })}>
+          <Link href="https://github.com" className="inline-flex items-center justify-center bg-[#39393b] text-[#ffffff] text-[16px] font-medium rounded-full px-[32px] h-[48px] transition-transform duration-150 active:scale-50 active:opacity-50">
             View GitHub
           </Link>
         </div>

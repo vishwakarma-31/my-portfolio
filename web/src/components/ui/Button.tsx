@@ -3,16 +3,16 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-"inline-flex items-center justify-center whitespace-nowrap rounded-lg min-h-[44px] type-body-small font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-full min-h-[44px] min-w-[44px] type-body-small font-medium transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-text-primary text-background-primary hover:opacity-90",
-        destructive: "bg-[#ff453a] text-white hover:bg-[#ff453a]/90",
-        outline: "border border-border-strong bg-transparent hover:bg-surface-hover",
-        secondary: "bg-surface-default text-text-primary hover:bg-surface-hover",
-        ghost: "bg-transparent text-text-primary hover:bg-surface-hover",
-        cta: "bg-accent-primary text-[#050D05] hover:bg-[#A3FF1A] font-semibold shadow-[0_0_40px_rgba(150,255,0,0.2)] hover:scale-[1.02] active:scale-[0.98] rounded-sm type-caption",
+        default: "bg-white text-black hover:bg-white/90 active:scale-95",
+        destructive: "bg-destructive text-white hover:bg-destructive/90",
+        outline: "border-2 border-white bg-transparent text-white hover:bg-white/10 active:scale-95",
+        secondary: "bg-surface-default text-text-primary hover:bg-surface-hover active:scale-95",
+        ghost: "bg-transparent text-text-primary hover:bg-surface-hover active:scale-95",
+        cta: "bg-accent-primary text-black hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] font-semibold shadow-sm",
         link: "text-brand-primary underline-offset-4 hover:underline",
       },
       size: {
@@ -31,7 +31,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+  VariantProps<typeof buttonVariants> { }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
