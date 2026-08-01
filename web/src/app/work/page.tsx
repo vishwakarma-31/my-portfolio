@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-const categories = ["All", "AI", "Automation", "Business Growth", "Dashboards", "Web Applications"];
+const categories = ["All", "AI", "Security", "Web Applications"];
 
 const allProjects = [
   {
@@ -15,11 +15,11 @@ const allProjects = [
     image: "/projects/Cropify.png"
   },
   {
-    title: "Telegram Trading Bot",
-    description: "Automated trading bot integrated with Telegram for real-time market analysis, signal alerts, and trade execution.",
-    category: "Automation",
-    slug: "trading-bot",
-    image: "/projects/Trading_Bot.png"
+    title: "RBAC Authorization Platform",
+    description: "Role-based access control system for enterprise applications.",
+    category: "Security",
+    slug: "rbac-auth",
+    image: "/projects/rbac.png"
   },
   {
     title: "AI Interview",
@@ -29,11 +29,11 @@ const allProjects = [
     image: "/projects/AI_Interview.png"
   },
   {
-    title: "Jarvis",
-    description: "A sophisticated AI virtual assistant capable of natural conversation, task automation, and system control via a modern web UI.",
+    title: "Real-Time Dark Pattern Detector",
+    description: "Detects and flags manipulative UX patterns on e-commerce sites in real-time.",
     category: "Web Applications",
-    slug: "jarvis",
-    image: "/projects/Jarvis.png"
+    slug: "dark-pattern-detector",
+    image: "/projects/dark-pattern.png"
   }
 ];
 
@@ -45,13 +45,13 @@ export default function ProjectsArchive() {
     : allProjects.filter(p => p.category === activeCategory);
 
   return (
-    <main className="min-h-screen bg-page-dark text-text-dark pt-32 pb-24 px-6 lg:px-12 selection:bg-brand-primary selection:text-white">
+    <main className="dark min-h-screen bg-background-primary text-text-primary pt-32 pb-24 px-6 lg:px-12 selection:bg-brand-primary selection:text-white">
       <div className="max-w-[1400px] mx-auto">
         <header className="mb-16">
-          <h1 className="text-[48px] md:text-[64px] font-marketing font-light tracking-tight mb-6 leading-tight">
+          <h1 className="type-apple-headline mb-6 text-white">
             Project Archive
           </h1>
-          <p className="text-[20px] text-text-secondary-dark font-ui font-light max-w-2xl">
+          <p className="type-body-large text-text-secondary max-w-2xl">
             A comprehensive collection of problems solved through software engineering, design, and product thinking.
           </p>
         </header>
@@ -64,8 +64,8 @@ export default function ProjectsArchive() {
               onClick={() => setActiveCategory(cat)}
               className={`px-5 py-2.5 rounded-full text-[14px] font-ui transition-all duration-300 ${
                 activeCategory === cat 
-                  ? 'bg-background-elevated text-black font-medium' 
-                  : 'bg-[rgba(255,255,255,0.05)] text-text-secondary-dark hover:bg-[rgba(255,255,255,0.1)] hover:text-white'
+                  ? 'bg-background-elevated text-text-primary font-medium border border-border-strong' 
+                  : 'bg-transparent text-text-secondary border border-border-subtle hover:bg-surface-hover hover:text-text-primary'
               }`}
             >
               {cat}
@@ -84,7 +84,7 @@ export default function ProjectsArchive() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex flex-col bg-background-secondary border border-border-subtle rounded-md overflow-hidden hover:border-[rgba(255,255,255,0.2)] transition-colors duration-300 stripe-shadow"
+                className="group relative flex flex-col bg-background-secondary border border-border-subtle rounded-xl overflow-hidden hover:border-border-strong transition-colors duration-300 stripe-shadow"
               >
                 <div className="w-full aspect-[4/3] relative overflow-hidden bg-background-tertiary">
                   <img 
@@ -92,24 +92,23 @@ export default function ProjectsArchive() {
                     alt={project.title}
                     className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background-secondary to-transparent opacity-50" />
                 </div>
-                <div className="p-6 flex flex-col flex-grow">
-                  <span className="text-brand-primary font-ui text-[12px] font-medium tracking-wide uppercase mb-3">
+                <div className="p-8 flex flex-col flex-grow bg-background-secondary">
+                  <span className="text-brand-primary type-tiny uppercase mb-4">
                     {project.category}
                   </span>
-                  <h3 className="text-[24px] font-marketing font-light text-white mb-3 tracking-tight">
+                  <h3 className="type-h3 text-text-primary mb-3">
                     {project.title}
                   </h3>
-                  <p className="text-[15px] font-ui text-text-secondary-dark leading-relaxed flex-grow">
+                  <p className="type-body text-text-secondary flex-grow">
                     {project.description}
                   </p>
                   <div className="mt-8">
-                    <Link href={`/projects/${project.slug}`}>
-                      <button className="text-[14px] font-ui text-white font-medium hover:text-brand-primary transition-colors flex items-center gap-2">
+                    <Link href={`/work/${project.slug}`}>
+                      <button className="type-caption text-text-primary font-medium hover:text-brand-primary linear-hover flex items-center gap-2 group/btn">
                         View Project
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
+                        <span className="transition-transform duration-300 group-hover/btn:translate-x-1">&rarr;</span>
                       </button>
                     </Link>
                   </div>
@@ -121,7 +120,7 @@ export default function ProjectsArchive() {
 
         {filteredProjects.length === 0 && (
           <div className="py-32 text-center">
-            <p className="text-[18px] text-text-secondary-dark font-ui">No projects found in this category.</p>
+            <p className="type-body text-text-secondary">No projects found in this category.</p>
           </div>
         )}
       </div>

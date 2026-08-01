@@ -9,16 +9,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const principles = [
   {
-    title: "Why simplicity matters.",
-    desc: "Complexity scales exponentially. Every new feature, abstraction, and dependency adds cognitive load. I ruthlessly eliminate the unnecessary so that the necessary can speak."
+    title: "Predictable execution over heroic sprints.",
+    desc: "I prefer boring, predictable delivery over chaotic heroics. A well-architected system shouldn't require midnight debugging. I prioritize strict typing, comprehensive testing, and clear boundaries."
   },
   {
-    title: "Why performance matters.",
-    desc: "Speed is a feature. If software feels sluggish, trust evaporates. I design architectures that respect the user's time and device resources."
+    title: "Code is read ten times more than it is written.",
+    desc: "Clever code is a liability. I optimize for the next engineer who has to maintain the system, which means readable syntax, intuitive folder structures, and leaving clear context in PRs."
   },
   {
-    title: "Why maintainability matters.",
-    desc: "Code is read ten times more than it is written. Writing clever code is easy; writing clear, predictable code requires discipline. I optimize for the next engineer."
+    title: "Protect the user's attention.",
+    desc: "Software should respect the user's time. I aggressively remove latency, layout shifts, and unnecessary clicks. Every micro-interaction is designed to feel instantaneous and intentional."
   }
 ];
 
@@ -60,7 +60,7 @@ export function HowIThink() {
                 aria-expanded={isActive}
                 aria-controls={`accordion-content-${i}`}
                 id={`accordion-header-${i}`}
-                className={`flex flex-col border-l-2 pl-6 linear-hover cursor-pointer outline-none focus-visible:border-brand-primary ${isActive ? "border-brand-primary" : "border-border-subtle hover:border-text-secondary"}`}
+                className={`flex flex-col border-l pl-6 linear-hover cursor-pointer outline-none focus-visible:border-brand-primary ${isActive ? "border-brand-primary" : "border-border-subtle hover:border-text-secondary"}`}
                 onMouseEnter={() => setActiveIndex(i)}
                 onClick={() => setActiveIndex(i)}
                 onKeyDown={(e) => {
@@ -70,7 +70,7 @@ export function HowIThink() {
                   }
                 }}
               >
-                <h3 className={`type-h3 tracking-tight linear-hover ${isActive ? "text-text-primary" : "text-text-secondary"}`}>
+                <h3 className={`text-[13px] font-normal tracking-tight linear-hover ${isActive ? "text-text-primary" : "text-text-secondary"}`}>
                   {p.title}
                 </h3>
 
@@ -81,7 +81,7 @@ export function HowIThink() {
                   className={`grid transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${isActive ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 mt-0"}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="type-body-large text-text-secondary leading-relaxed max-w-[640px]">
+                    <p className="text-[13px] text-text-secondary leading-relaxed max-w-[640px]">
                       {p.desc}
                     </p>
                   </div>

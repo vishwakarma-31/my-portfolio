@@ -9,21 +9,21 @@ export function ProductFeatureList() {
     <>
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
         <div>
-          <h3 className="text-[17px] font-semibold tracking-[-0.374px] mb-2 text-text-primary">Product</h3>
+          <h3 className="text-[17px] font-semibold tracking-[-0.374px] mb-2 text-text-primary">Problem</h3>
           <p className="text-[17px] font-light leading-[1.7] tracking-[-0.374px] text-text-secondary max-w-[40ch]">
-            Teams lost time jumping between tools during outages. Designed a single unified real-time dashboard prioritizing critical telemetry.
+            Ad hoc interviews introduce bias and inconsistency. The goal was to build a structured, automated candidate screening platform ensuring uniform evaluation.
           </p>
         </div>
         <div>
           <h3 className="text-[17px] font-semibold tracking-[-0.374px] mb-2 text-text-primary">Engineering</h3>
           <p className="text-[17px] font-light leading-[1.7] tracking-[-0.374px] text-text-secondary max-w-[40ch]">
-            Aggregated metrics instantly using a highly available Go pool and ClickHouse time-series datastore to guarantee sub-20ms latency.
+            Implemented a secure JWT access/refresh flow with Redis caching for sessions, and Socket.IO for real-time state sync during webcam and speech-recognition workflows.
           </p>
         </div>
         <div>
-          <h3 className="text-[17px] font-semibold tracking-[-0.374px] mb-2 text-text-primary">Business</h3>
+          <h3 className="text-[17px] font-semibold tracking-[-0.374px] mb-2 text-text-primary">Architecture</h3>
           <p className="text-[17px] font-light leading-[1.7] tracking-[-0.374px] text-text-secondary max-w-[40ch]">
-            Reduced MTTR by 45% and adopted by over 50 enterprise engineering teams in 90 days, saving millions in downtime.
+            Designed an asynchronous pipeline connecting the Node.js backend to the OpenAI API for candidate response analysis, complete with strict GDPR consent handling.
           </p>
         </div>
       </div>
@@ -32,8 +32,10 @@ export function ProductFeatureList() {
       <div className="max-w-[1440px] mx-auto mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 pb-12">
         <div className="flex flex-wrap items-center gap-4">
           <span className="text-[14px] text-text-secondary bg-background-primary px-3 py-1 rounded-full">React</span>
-          <span className="text-[14px] text-text-secondary bg-background-primary px-3 py-1 rounded-full">Go</span>
-          <span className="text-[14px] text-text-secondary bg-background-primary px-3 py-1 rounded-full">ClickHouse</span>
+          <span className="text-[14px] text-text-secondary bg-background-primary px-3 py-1 rounded-full">Node.js</span>
+          <span className="text-[14px] text-text-secondary bg-background-primary px-3 py-1 rounded-full">MongoDB</span>
+          <span className="text-[14px] text-text-secondary bg-background-primary px-3 py-1 rounded-full">Redis</span>
+          <span className="text-[14px] text-text-secondary bg-background-primary px-3 py-1 rounded-full">OpenAI</span>
           <span className="text-[14px] text-text-secondary bg-background-primary px-3 py-1 rounded-full">WebSockets</span>
         </div>
 

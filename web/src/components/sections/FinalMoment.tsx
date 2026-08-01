@@ -63,7 +63,7 @@ export function FinalMoment() {
   return (
     <section ref={container} className="dark py-48 flex items-center justify-center bg-[#111111] text-[#ffffff] px-6 md:px-12 xl:px-24">
       <div className="final-content opacity-0 max-w-[760px] text-center flex flex-col items-center">
-        <h2 className="font-medium text-[clamp(64px,14vw,180px)] leading-[0.9] tracking-[0px] uppercase mb-12">
+        <h2 className="type-nike-manifesto mb-12">
           Ready to build?
         </h2>
         
@@ -73,14 +73,14 @@ export function FinalMoment() {
         
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link 
-            href="/contact"
+            href="mailto:hello@example.com"
             onPointerDown={handlePointerDown}
             className="inline-flex items-center justify-center bg-[#ffffff] text-[#111111] text-[24px] font-medium rounded-full px-[32px] h-[48px] transition-transform duration-150 active:scale-50 active:opacity-50"
           >
             Start a Project
           </Link>
           
-          <Link href="https://github.com" className="inline-flex items-center justify-center bg-[#39393b] text-[#ffffff] text-[16px] font-medium rounded-full px-[32px] h-[48px] transition-transform duration-150 active:scale-50 active:opacity-50">
+          <Link href="https://github.com/vishwakarma-31" className="inline-flex items-center justify-center bg-[#39393b] text-[#ffffff] text-[16px] font-medium rounded-full px-[32px] h-[48px] transition-transform duration-150 active:scale-50 active:opacity-50">
             View GitHub
           </Link>
         </div>

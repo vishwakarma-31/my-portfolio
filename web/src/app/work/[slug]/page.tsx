@@ -40,7 +40,7 @@ export default async function ProjectPage({ params }: Props) {
       <section className="relative w-full min-h-[70vh] flex flex-col justify-center pt-32 pb-16 px-6 lg:px-12 border-b border-[rgba(255,255,255,0.05)]">
         <div className="max-w-[1200px] mx-auto w-full">
           
-          <Link href="/projects" className="inline-flex items-center text-white/40 hover:text-white transition-colors duration-200 mb-12 group text-[13px] font-code tracking-widest uppercase">
+          <Link href="/work" className="inline-flex items-center text-white/40 hover:text-white transition-colors duration-200 mb-12 group text-[13px] font-code tracking-widest uppercase">
             <div className="w-8 h-8 rounded-full border border-border-strong flex items-center justify-center mr-3 group-hover:bg-background-elevated/10 transition-colors">
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
             </div>
@@ -287,7 +287,7 @@ export default async function ProjectPage({ params }: Props) {
         <section className="pt-32 border-t border-[rgba(255,255,255,0.05)] mt-16">
           <div className="flex flex-col sm:flex-row justify-between gap-8">
             {prevProject ? (
-              <Link href={`/projects/${prevProject.slug}`} className="group flex flex-col items-start gap-2 w-full sm:w-1/2 p-8 bg-background-tertiary border border-[rgba(255,255,255,0.05)] rounded-md hover:border-white/20 transition-colors">
+              <Link href={`/work/${prevProject.slug}`} className="group flex flex-col items-start gap-2 w-full sm:w-1/2 p-8 bg-background-tertiary border border-[rgba(255,255,255,0.05)] rounded-md hover:border-white/20 transition-colors">
                 <span className="font-code text-[11px] text-white/40 uppercase tracking-widest flex items-center gap-2">
                   <ArrowLeft className="w-3 h-3 group-hover:-translate-x-1 transition-transform" /> Previous Project
                 </span>
@@ -296,7 +296,7 @@ export default async function ProjectPage({ params }: Props) {
             ) : <div className="w-full sm:w-1/2" />}
             
             {nextProject ? (
-              <Link href={`/projects/${nextProject.slug}`} className="group flex flex-col items-end text-right gap-2 w-full sm:w-1/2 p-8 bg-background-tertiary border border-[rgba(255,255,255,0.05)] rounded-md hover:border-white/20 transition-colors">
+              <Link href={`/work/${nextProject.slug}`} className="group flex flex-col items-end text-right gap-2 w-full sm:w-1/2 p-8 bg-background-tertiary border border-[rgba(255,255,255,0.05)] rounded-md hover:border-white/20 transition-colors">
                 <span className="font-code text-[11px] text-white/40 uppercase tracking-widest flex items-center gap-2">
                   Next Project <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </span>

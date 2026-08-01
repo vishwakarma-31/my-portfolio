@@ -46,10 +46,10 @@ export function FeaturedProducts() {
               <div className="mb-12">
                 <div className="text-brand-primary text-[14px] font-semibold tracking-[-0.224px] uppercase mb-4">Flagship Project</div>
                 <h2 className="text-[40px] font-semibold leading-[1.1] tracking-[0px] mb-4">
-                  Nova
+                  AI Interview System
                 </h2>
                 <p className="text-[28px] font-normal leading-[1.14] tracking-[0.196px] max-w-[70ch]">
-                  Incident resolution interface for high-scale engineering teams.
+                  Automated candidate screening with real-time speech analysis and bias detection.
                 </p>
               </div>
             </div>

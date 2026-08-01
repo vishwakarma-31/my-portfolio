@@ -50,8 +50,11 @@ export function HeroProduct() {
           </div>
         </div>
 
-        <div className="hero-role text-[14px] font-semibold tracking-[-0.224px] uppercase mb-4 opacity-0 translate-y-4 text-text-secondary">
-          Product Architect
+        <div className="hero-role text-[14px] font-semibold tracking-[-0.224px] uppercase mb-2 opacity-0 translate-y-4 text-text-secondary">
+          Final-year student, graduating 2026
+        </div>
+        <div className="hero-role text-[12px] font-medium tracking-tight mb-6 opacity-0 translate-y-4 text-text-muted">
+          📍 Kanpur, India — Open to Remote & Relocation
         </div>
 
         <h1
@@ -80,10 +83,11 @@ export function HeroProduct() {
             View My Work
           </Link>
           <Link 
-            href="/contact"
+            href="/Aryan_Vishwakarma_Resume.pdf"
+            target="_blank"
             className={buttonVariants({ variant: "secondary" })}
           >
-            Let's Build Together
+            View Resume (PDF)
           </Link>
         </div>
 

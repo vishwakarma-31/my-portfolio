@@ -29,7 +29,7 @@ export function WhyChooseMe() {
           {differentiators.map((diff, i) => (
             <div 
               key={i} 
-              className="diff-card opacity-0 group relative p-8 rounded-md bg-[rgba(255,255,255,0.02)] border-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.04)] transition-all duration-[300ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-1"
+              className="diff-card opacity-0 group relative p-8 rounded-md bg-[rgba(255,255,255,0.02)] border-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.04)] hover:stripe-shadow transition-all duration-[300ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:-translate-y-1"
             >
               <div className="w-10 h-10 rounded-full bg-black/5 dark:bg-surface-hover flex items-center justify-center mb-6 text-brand-primary">
                 {i === 0 && <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>}
@@ -39,7 +39,7 @@ export function WhyChooseMe() {
               <h3 className="type-h4 text-white mb-3 tracking-tight">
                 {diff.title}
               </h3>
-              <p className="type-body text-white/60 leading-[1.7]">
+              <p className="type-body font-light text-white/60 leading-[1.7]">
                 {diff.desc}
               </p>
             </div>

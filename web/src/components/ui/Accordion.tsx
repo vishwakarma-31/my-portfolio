@@ -25,14 +25,14 @@ export function Accordion({ items, className }: AccordionProps) {
         return (
           <div
             key={item.id}
-            className="border-b border-[#23252a]"
+            className={`border-b border-[#23252a] pl-4 border-l transition-colors duration-150 ${isOpen ? 'border-l-brand-primary' : 'border-l-transparent'}`}
           >
             <button
               onClick={() => setOpenId(isOpen ? null : item.id)}
               className="w-full text-left py-6 flex justify-between items-center group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5e69d1] rounded-sm"
               aria-expanded={isOpen}
             >
-              <span className="type-body font-medium text-[#f7f8f8] group-hover:text-[#f7f8f8]/80 transition-colors duration-[150ms]">
+              <span className="text-[13px] font-normal text-[#f7f8f8] group-hover:text-[#f7f8f8]/80 linear-hover">
                 {item.title}
               </span>
               <span
@@ -55,7 +55,7 @@ export function Accordion({ items, className }: AccordionProps) {
                 opacity: isOpen ? 1 : 0,
               }}
             >
-              <div className="type-caption text-[#8a8f98] pb-6 leading-[1.6]">
+              <div className="text-[13px] text-[#8a8f98] pb-6 leading-[1.6]">
                 {item.content}
               </div>
             </div>

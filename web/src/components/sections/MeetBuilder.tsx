@@ -39,9 +39,10 @@ export function MeetBuilder() {
           {/* Portrait Image */}
           <Image 
             src="/images/builder_portrait.png" 
-            alt="Builder Portrait" 
+            alt="Aryan Vishwakarma" 
             fill 
-            className="object-cover opacity-60 mix-blend-luminosity grayscale group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-700" 
+            sizes="(max-width: 768px) 100vw, 400px"
+            className="object-cover object-center scale-105 opacity-60 mix-blend-luminosity grayscale group-hover:grayscale-0 group-hover:opacity-90 transition-all duration-700" 
           />
           {/* Subtle noise and gradient overlay */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[rgba(255,255,255,0.05)] via-transparent to-[rgba(0,0,0,0.9)] pointer-events-none" />
@@ -54,7 +55,6 @@ export function MeetBuilder() {
             
             <div className="pt-4 border-t border-border-subtle flex items-center justify-between type-tiny font-code text-text-muted">
               <span>LOC: INDIA</span>
-              <span>EXP: 5+ YRS</span>
             </div>
           </div>
         </div>
@@ -70,12 +70,7 @@ export function MeetBuilder() {
               I am a product engineer and architect. I build software with the rigor it deserves, ensuring predictable execution and transparent communication.
             </p>
             
-            {/* Timeline */}
-            <div className="pl-4 border-l border-white/30 type-body">
-              <div className="mb-2"><span className="text-white font-medium mr-2 font-display uppercase">2019</span> Senior Engineer at Nexus</div>
-              <div className="mb-2"><span className="text-white font-medium mr-2 font-display uppercase">2021</span> Lead Architect at Lumina</div>
-              <div><span className="text-white font-medium mr-2 font-display uppercase">2023</span> Independent Consultant</div>
-            </div>
+            {/* Timeline Removed */}
             
             {/* Core Values */}
             <ul className="list-disc pl-5 type-body">

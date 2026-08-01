@@ -11,7 +11,7 @@ export function ProductDemoWindow() {
     <div className="w-full h-auto rounded-[18px] bg-background-primary border border-border-subtle overflow-hidden flex flex-col transition-all duration-[250ms] ease-out hover:-translate-y-1 stripe-shadow">
       <div className="px-6 py-4 flex items-center justify-between bg-surface-default border-b border-border-subtle">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-[12px] text-text-secondary">nova.internal.dashboard</span>
+          <span className="font-mono text-[12px] text-text-secondary">ai.interview.dashboard</span>
         </div>
 
         <div 
@@ -56,33 +56,33 @@ export function ProductDemoWindow() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-surface-subtle p-6 rounded-md border border-border-subtle flex flex-col justify-between">
               <div>
-                <div className="type-tiny text-accent-primary mb-2 tracking-wide uppercase">System Status</div>
-                <div className="type-h4 text-text-inverse tracking-tight">100% Operational</div>
+                <div className="type-tiny text-accent-primary mb-2 tracking-wide uppercase">Real-Time Audio</div>
+                <div className="type-h4 text-text-primary tracking-tight">Active Stream</div>
               </div>
-              <div className="mt-6 type-tiny text-text-secondary">Latency: 14ms</div>
+              <div className="mt-6 type-tiny text-text-secondary">WebRTC Latency: 42ms</div>
             </div>
             <div className="bg-[rgba(255,255,255,0.02)] p-6 rounded-md border border-border-subtle flex flex-col justify-between">
               <div>
-                <div className="type-tiny text-brand-primary mb-2 tracking-wide uppercase">MTTR Impact</div>
-                <div className="type-h4 text-text-inverse tracking-tight">45% Reduction</div>
+                <div className="type-tiny text-brand-primary mb-2 tracking-wide uppercase">NLP Engine</div>
+                <div className="type-h4 text-text-primary tracking-tight">Processing</div>
               </div>
-              <div className="mt-6 type-tiny text-text-secondary">Avg: 8.2 mins</div>
+              <div className="mt-6 type-tiny text-text-secondary">Context Window: 8k tokens</div>
             </div>
             <div className="bg-[rgba(255,255,255,0.02)] p-6 rounded-md border border-border-subtle flex flex-col justify-between">
               <div>
-                <div className="type-tiny text-amber-400 mb-2 tracking-wide uppercase">Active Traces</div>
-                <div className="type-h4 text-text-inverse tracking-tight">12.4k req/sec</div>
+                <div className="type-tiny text-amber-400 mb-2 tracking-wide uppercase">Bias Detection</div>
+                <div className="type-h4 text-text-primary tracking-tight">0.92 Confidence</div>
               </div>
-              <div className="mt-6 type-tiny text-text-secondary">Zero packet loss</div>
+              <div className="mt-6 type-tiny text-text-secondary">Fairness constraints met</div>
             </div>
           </div>
         ) : (
           <CodeBlock
-            code={`const incidentPipeline = createEventStream({
-  ingestion: "KafkaCluster",
-  realtimeProcessor: "GoRoutinePool",
-  storage: "ClickHouseTimeSeries",
-  frontendSync: "WebSocketSubscribers"
+            code={`const interviewPipeline = createWebRTCStream({
+  audioSource: "BrowserMicrophone",
+  processingEngine: "PythonFastAPI",
+  model: "Whisper-v3",
+  analyzer: "LangChainAgents"
 });`}
           />
         )}

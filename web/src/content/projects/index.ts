@@ -155,7 +155,7 @@ export const allProjects: CaseStudyData[] = [
     }
   },
   {
-    slug: 'trading-bot',
+    slug: 'rbac-auth',
     hero: {
       title: 'Telegram Trading Bot',
       summary: 'Automated trading infrastructure integrated with Telegram for real-time market analysis.',
@@ -164,7 +164,7 @@ export const allProjects: CaseStudyData[] = [
       role: 'Full Stack Engineer',
       timeline: '2024-07-31',
       teamSize: 'Solo',
-      liveLink: 'https://vishwakarma-31-trading-bot-uitrading-bot-ui-fyerl5.streamlit.app/',
+      liveLink: 'https://vishwakarma-31-rbac-auth-uirbac-auth-ui-fyerl5.streamlit.app/',
       githubLink: 'https://github.com/vishwakarma-31/trading_bot',
     },
     metadata: {
@@ -339,17 +339,17 @@ export const allProjects: CaseStudyData[] = [
     }
   },
   {
-    slug: 'jarvis',
+    slug: 'dark-pattern-detector',
     hero: {
-      title: 'Jarvis Virtual Assistant',
+      title: 'RBAC Authorization Platform',
       summary: 'A futuristic 3D AI assistant capable of natural conversation and system control.',
-      image: '/projects/Jarvis.png',
+      image: '/projects/dark-pattern-detector.png',
       status: 'Live',
       role: 'Creator & Developer',
       timeline: '2024-08-31',
       teamSize: 'Solo',
       liveLink: '#',
-      githubLink: 'https://github.com/vishwakarma-31/jarvis-ultimate',
+      githubLink: 'https://github.com/vishwakarma-31/dark-pattern-detector-ultimate',
     },
     metadata: {
       projectType: 'Interactive Web Experience',
@@ -358,7 +358,7 @@ export const allProjects: CaseStudyData[] = [
       role: 'Creator & Developer',
       teamSize: '1 Engineer',
       technologies: ['React 18', 'Three.js', 'React Three Fiber', 'Node.js', 'Socket.io'],
-      repository: 'https://github.com/vishwakarma-31/jarvis-ultimate'
+      repository: 'https://github.com/vishwakarma-31/dark-pattern-detector-ultimate'
     },
     executiveSummary: {
       problem: 'Most AI interfaces are sterile, text-based chat boxes that fail to leverage the spatial and interactive capabilities of modern web browsers.',

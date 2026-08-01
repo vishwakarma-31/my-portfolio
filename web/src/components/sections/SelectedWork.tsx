@@ -11,25 +11,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    name: "Aura",
-    category: "SaaS",
-    desc: "AI-driven scheduling infrastructure for distributed teams.",
-    tech: ["React", "Go", "PostgreSQL"],
-    metric: "40k hours saved",
+    name: "RBAC Authorization Platform",
+    category: "Security",
+    desc: "Role-based access control system for enterprise applications.",
+    tech: ["Node.js", "Redis", "PostgreSQL"],
+    metric: "Distributed Architecture",
+    slug: "rbac-auth",
   },
   {
-    name: "Nexus",
-    category: "Fintech",
-    desc: "High-frequency trading interface for retail investors.",
-    tech: ["Next.js", "WebSockets", "Rust"],
-    metric: "12ms latency",
+    name: "Real-Time Dark Pattern Detector",
+    category: "Browser Extension",
+    desc: "Detects and flags manipulative UX patterns on e-commerce sites in real-time.",
+    tech: ["TypeScript", "Python (FastAPI)", "Scikit-Learn"],
+    metric: "Real-Time Analysis",
+    slug: "dark-pattern-detector",
   },
   {
-    name: "Lumina",
-    category: "E-commerce",
-    desc: "Automated tax compliance engine for e-commerce.",
-    tech: ["Node.js", "Stripe API", "AWS"],
-    metric: "$2M processed",
+    name: "Cropify",
+    category: "AgriTech",
+    desc: "Machine learning platform for crop disease prediction and yield optimization.",
+    tech: ["React", "Flask", "TensorFlow"],
+    metric: "Predictive Modeling",
+    slug: "cropify-ml",
   }
 ];
 
@@ -96,7 +99,7 @@ export function SelectedWork() {
                   {project.desc}
                 </p>
                 
-                <Link href="#contact" className="mt-auto flex items-center gap-2 type-caption text-black dark:text-white group/btn">
+                <Link href={`/work/${project.slug}`} className="mt-auto flex items-center gap-2 type-caption text-black dark:text-white group/btn">
                   View Case Study 
                   <span className="transition-transform duration-300 group-hover/btn:translate-x-1">&rarr;</span>
                 </Link>

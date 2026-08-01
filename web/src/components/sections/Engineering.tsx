@@ -33,14 +33,17 @@ export function Engineering() {
           {/* React / Next.js */}
           <div className="tech-item rounded-md border border-border-subtle bg-background-primary overflow-hidden">
             <div className="h-[140px] bg-background-primary border-b border-border-subtle relative flex items-center justify-center overflow-hidden">
-              {/* Fake UI component */}
-              <div className="w-[180px] h-15 bg-background-tertiary rounded-md border border-border-strong flex items-center p-3 gap-3 shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
-                <div className="w-8 h-8 rounded-full bg-background-elevated/10" />
-                <div className="flex flex-col gap-1.5 flex-1">
-                  <div className="h-2 w-full bg-[#333] rounded-full" />
-                  <div className="h-2 w-2/3 bg-[#333] rounded-full" />
-                </div>
-              </div>
+              <CodeBlock 
+                className="w-full shadow-none border-none !p-0"
+                code={`export default async function Page() {
+  const data = await fetchUser();
+  return (
+    <Suspense fallback={<Loader />}>
+      <Dashboard data={data} />
+    </Suspense>
+  );
+}`}
+              />
             </div>
             <div className="p-8">
               <div className="type-body font-medium text-white mb-2">React / Next.js</div>
@@ -53,12 +56,18 @@ export function Engineering() {
           {/* Node.js */}
           <div className="tech-item rounded-md border border-border-subtle bg-background-primary overflow-hidden">
             <div className="h-[140px] bg-background-primary border-b border-border-subtle relative flex items-center justify-center overflow-hidden">
-              {/* Traffic Graph */}
-              <div className="flex items-end gap-1 h-15">
-                {graphHeights.map((h, i) => (
-                  <div key={i} className="w-3 bg-[#333] rounded-t-sm" style={{ height: `${h}%` }} />
-                ))}
-              </div>
+              <CodeBlock 
+                className="w-full shadow-none border-none !p-0"
+                code={`app.post('/api/orders', async (req, res) => {
+  const session = await db.startSession();
+  try {
+    await processOrder(req.body, { session });
+    res.status(200).send('OK');
+  } catch (err) {
+    res.status(500).send('Error');
+  }
+});`}
+              />
             </div>
             <div className="p-8">
               <div className="type-body font-medium text-white mb-2">Node.js & Go</div>
@@ -71,19 +80,15 @@ export function Engineering() {
           {/* PostgreSQL */}
           <div className="tech-item rounded-md border border-border-subtle bg-background-primary overflow-hidden">
             <div className="h-[140px] bg-background-primary border-b border-border-subtle relative flex items-center justify-center overflow-hidden">
-              {/* DB Schema visual */}
-              <div className="flex gap-4">
-                <div className="w-[70px] h-[70px] rounded-md border border-white/20 bg-surface-hover flex items-center justify-center">
-                  <div className="text-[10px] font-code text-white">Users</div>
-                </div>
-                <div className="flex flex-col justify-center gap-1">
-                  <div className="w-6 h-[1px] bg-[#333]" />
-                  <div className="w-6 h-[1px] bg-[#333]" />
-                </div>
-                <div className="w-[70px] h-[70px] rounded-md border border-border-strong bg-background-tertiary flex items-center justify-center">
-                  <div className="text-[10px] font-code text-text-secondary">Orders</div>
-                </div>
-              </div>
+              <CodeBlock 
+                className="w-full shadow-none border-none !p-0"
+                code={`CREATE INDEX idx_orders_user 
+ON orders(user_id, status)
+WHERE status = 'active';
+
+SELECT * FROM orders 
+WHERE user_id = $1;`}
+              />
             </div>
             <div className="p-8">
               <div className="type-body font-medium text-white mb-2">PostgreSQL</div>

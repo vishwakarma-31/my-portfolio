@@ -69,8 +69,7 @@ export function Industries() {
           {industries.map((ind, i) => (
             <Card
               key={i}
-              variant="interactive"
-              className="ind-card opacity-0 w-[300px] bg-surface-default border-border-subtle hover:bg-surface-hover flex flex-col shrink-0"
+              className="ind-card opacity-0 w-[300px] bg-surface-default border-border-subtle flex flex-col shrink-0"
             >
               <CardContent className="p-8 flex flex-col h-full">
                 {/* Abstract Visual Placeholder */}

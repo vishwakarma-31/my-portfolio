@@ -1,38 +1,33 @@
-export const faqs = [
+export const testimonials = [
   {
-    q: "How much does a project cost?",
-    a: "Costs scale with complexity. I operate on a value-based pricing model, meaning you pay for the outcome and business impact, not hourly labor. Every engagement begins with a transparent scope and fixed price."
-  },
-  {
-    q: "What is your typical timeline?",
-    a: "Most flagship projects take between 4 to 8 weeks from strategy to deployment. I prioritize speed-to-market without sacrificing architectural integrity."
-  },
-  {
-    q: "Do you provide ongoing support?",
-    a: "Yes. I offer retainer-based maintenance and scaling support to ensure your product grows seamlessly with your business."
-  },
-  {
-    q: "Who owns the code?",
-    a: "You do. Upon final payment, full intellectual property rights and source code are transferred to your organization."
+    quote: "Client quote will go here once you complete a freelance project.",
+    author: "Client Name",
+    role: "Client Role/Business",
+    company: "Company Name",
+    outcome: "Business Outcome Delivered"
   }
 ];
 
-export const testimonials = [
+export const faqs = [
   {
-    quote: "He didn't just build the software we asked for; he redesigned our entire approach to the problem. The final product was faster and more intuitive than we thought possible.",
-    author: "Sarah J.",
-    role: "Founder, FinTech Startup",
-    company: "FINTECH CO.",
-    outcome: "Delivered architecture 3 weeks ahead of schedule."
+    q: "How much does a project cost?",
+    a: "Costs depend on complexity. Landing pages typically start at ₹2,000, while full-stack web applications and custom software are scoped individually based on features and timeline."
   },
   {
-    quote: "Incredible attention to detail. Every interaction feels premium, and the backend handles our traffic spikes without breaking a sweat.",
-    author: "Michael T.",
-    role: "CTO, E-commerce Platform",
-    company: "E-COMMERCE LLC",
-    outcome: "Zero downtime during 5x traffic surge."
+    q: "What is your typical timeline?",
+    a: "Standard landing pages take 1-2 weeks. Full-stack applications take between 4 to 8 weeks from initial strategy to final deployment."
+  },
+  {
+    q: "Do you provide ongoing support?",
+    a: "Yes. I offer retainer-based maintenance and scaling support to ensure your product remains secure, fast, and up-to-date."
+  },
+  {
+    q: "Who owns the code?",
+    a: "You do. Upon final payment, full intellectual property rights and source code are transferred directly to you."
   }
 ];
+
+
 
 export const capabilities = [
   {
@@ -89,15 +84,9 @@ export const steps = [
 
 export const industries = [
   { name: "Healthcare", prob: "HIPAA compliance and fragmented patient records.", sol: "Unified, secure portals." },
-  { name: "Restaurants", prob: "High fees on third-party delivery apps.", sol: "First-party ordering systems." },
+  { name: "E-commerce", prob: "Inventory desync between online and offline.", sol: "Real-time sync engines." },
   { name: "Education", prob: "Low engagement in remote learning platforms.", sol: "Interactive LMS architectures." },
-  { name: "Retail", prob: "Inventory desync between online and offline.", sol: "Real-time sync engines." },
-  { name: "Finance", prob: "High latency in trading or reporting interfaces.", sol: "Sub-millisecond data pipelines." },
-  { name: "Hospitality", prob: "Double bookings and manual pricing.", sol: "Algorithmic booking engines." },
-  { name: "Manufacturing", prob: "Opaque supply chain tracking.", sol: "IoT-integrated dashboards." },
-  { name: "Construction", prob: "Paper-based safety and reporting.", sol: "Offline-first mobile tooling." },
-  { name: "Real Estate", prob: "Slow lead routing to agents.", sol: "Automated CRM integrations." },
-  { name: "Professional Services", prob: "Manual invoicing and scheduling.", sol: "End-to-end automation." },
+  { name: "Finance", prob: "High latency in trading or reporting interfaces.", sol: "Automated trading execution interfaces." }
 ];
 
 export const differentiators = [

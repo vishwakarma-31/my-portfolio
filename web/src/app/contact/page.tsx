@@ -50,7 +50,7 @@ export default function ContactPage() {
 
   if (status === "success") {
     return (
-      <div className="w-full flex flex-col min-h-screen bg-background-primary text-text-secondary selection:bg-accent-primary selection:text-black">
+      <div className="dark w-full flex flex-col min-h-screen bg-[#0d0d0d] text-text-secondary selection:bg-accent-primary selection:text-black">
         <section className="w-full min-h-screen flex items-center justify-center px-6 lg:px-12 py-32">
           <div className="max-w-[600px] w-full flex flex-col gap-8 text-center items-center">
             <div className="w-16 h-16 rounded-full bg-accent-primary/10 border border-accent-primary/30 flex items-center justify-center text-accent-primary">
@@ -75,7 +75,7 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="w-full flex flex-col min-h-screen bg-background-primary text-text-secondary selection:bg-accent-primary selection:text-black">
+    <div className="dark w-full flex flex-col min-h-screen bg-[#0d0d0d] text-text-secondary selection:bg-accent-primary selection:text-black">
       <section className="w-full min-h-screen flex items-center justify-center px-6 lg:px-12 py-32">
         <div className="max-w-[560px] w-full flex flex-col gap-12">
           
